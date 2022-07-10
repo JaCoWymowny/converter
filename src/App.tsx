@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
   BrowserRouter as Router,
 } from "react-router-dom";
+import Layout from "./components/Layout";
 
-const App = () => {
+const App:FC = () => {
   return (
     <div>
       <Router>
-        <div></div>
+        <Layout />
       </Router>
     </div>
   );
