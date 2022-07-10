@@ -1,17 +1,20 @@
 import ConverterForm from "../../components/ConverterForm";
 import { ExchangeFormData } from "../../interfaces/dbData";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import useListOfCurrency from "../../hooks/useListOfCurrency";
 
 const ConverterPage = () => {
+  const {
+    data,
+    isLoading
+  } = useListOfCurrency();
+
   const addFormData = (submittedCurrencyData: ExchangeFormData) => {
     console.log(submittedCurrencyData)
   }
-
-
   return (
     <div>
-      <ConverterForm addFormData={addFormData}/>
+      {isLoading && <div>Loading</div>}
+      {!isLoading && <ConverterForm addFormData={addFormData} codeList={data}/>}
     </div>
   )
 }
