@@ -1,23 +1,12 @@
 import React, { FC, Key, useState } from "react";
-import { ExchangeFormData, Options } from "../../interfaces/dbData";
-
-const options: Options[] = [
-  {
-    value: "EUR"
-  },
-  {
-    value: "DOL"
-  },
-  {
-    value: "GBP"
-  }
-]
+import { ExchangeFormData } from "../../interfaces/dbData";
 
 interface Props {
   addFormData: (submittedCurrencyData: ExchangeFormData) => void
+  codeList: any
 }
 
-const ConverterForm:FC<Props> = ({ addFormData }) => {
+const ConverterForm:FC<Props> = ({ addFormData, codeList}) => {
   const [numberValue, setNumberValue] = useState('');
   const [optionExchangeFrom, setOptionExchangeFrom] = useState('');
   const [optionExchangeFor, setOptionExchangeFor] = useState('');
@@ -32,9 +21,11 @@ const ConverterForm:FC<Props> = ({ addFormData }) => {
   }
 
   const handleOptions = () => {
-    return options.map((item, index: Key) => {
+    const allData = codeList.data.supported_codes;
+    const code = allData.map((e: string) => e[0])
+    return code.map((item: string, index: Key) => {
       return (
-        <option key={index}>{item.value}</option>
+        <option key={index}>{item}</option>
       )
     })
   }

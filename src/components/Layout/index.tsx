@@ -3,7 +3,7 @@ import {
   Routes
 } from "react-router-dom";
 import Converter from "../../pages/Converter";
-import ConverterWithHistory from "../../pages/ConverterWithHistory";
+import ConvertsHistory from "../../pages/ConvertsHistory";
 
 const Layout = () => {
   return (
@@ -13,8 +13,8 @@ const Layout = () => {
           <Converter/>
         }
         />
-        <Route path="/ConverterWithHistoryPage" element={
-          <ConverterWithHistory/>
+        <Route path="/ConverterWithHistory" element={
+          <ConvertsHistory/>
         }
         />
       </Routes>
