@@ -14,7 +14,10 @@ const Layout = () => {
         }
         />
         <Route path="/ConverterWithHistory" element={
-          <ConvertsHistory/>
+          <>
+            <Converter/>
+            <ConvertsHistory/>
+          </>
         }
         />
       </Routes>

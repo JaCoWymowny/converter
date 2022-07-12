@@ -1,20 +1,21 @@
 import ConverterForm from "../../components/ConverterForm";
 import { ExchangeFormData } from "../../interfaces/dbData";
-import useListOfCurrency from "../../hooks/useListOfCurrency";
 
 const ConverterPage = () => {
-  const {
-    data,
-    isLoading
-  } = useListOfCurrency();
-
-  const addFormData = (submittedCurrencyData: ExchangeFormData) => {
-    console.log(submittedCurrencyData)
+  const addFormData = (submittedCurrencyData: ExchangeFormData | null, conversionResult: number | null, date: string) => {
+    const obj = {
+      exchangeFrom: submittedCurrencyData?.exchangeFrom,
+      exchangeTo: submittedCurrencyData?.exchangeTo,
+      amount: submittedCurrencyData?.amount,
+      conversionResult: conversionResult,
+      date: date
+    }
+    console.log(obj)
   }
+
   return (
     <div>
-      {isLoading && <div>Loading</div>}
-      {!isLoading && <ConverterForm addFormData={addFormData} codeList={data}/>}
+      <ConverterForm addFormData={addFormData} />
     </div>
   )
 }

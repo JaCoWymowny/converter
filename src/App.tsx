@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 import Layout from "./components/Layout";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient =  new QueryClient();
 
@@ -15,6 +16,7 @@ const App:FC = () => {
           <Layout />
         </Router>
       </div>
+      <ReactQueryDevtools initialIsOpen={false} position='bottom-right'/>
     </QueryClientProvider>
   );
 }
