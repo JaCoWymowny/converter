@@ -32,8 +32,6 @@ const ConverterForm:FC<Props> = ({ addFormData }) => {
 
   useEffect(() => {
     if (submittedData) {
-      console.log("useEffect ruszył ")
-      console.log("test po ruszeniu:  ", submittedData);
       refetch().then((data) => setDataFromRequest(data.data.data.conversion_result))
     }
   }, [submittedData, refetch])
