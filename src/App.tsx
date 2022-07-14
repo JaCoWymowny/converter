@@ -10,12 +10,10 @@ const queryClient =  new QueryClient();
 const App:FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <div>
+
         <Router>
           <Layout />
         </Router>
-      </div>
-      {/*<ReactQueryDevtools initialIsOpen={false} position='bottom-right'/>*/}
     </QueryClientProvider>
   );
 }

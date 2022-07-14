@@ -1,6 +1,7 @@
 import ConverterForm from "../../components/ConverterForm";
 import { ExchangeFormData, HistoryRecords } from "../../interfaces/dbData";
 import { FC } from "react";
+import { ContainerWrapper, Title } from "./styles";
 
 interface Props {
   historyDataHandler: (newHistoryItem: HistoryRecords) => void
@@ -23,9 +24,10 @@ const ConverterPage:FC<Props> = ({historyDataHandler}) => {
   }
 
   return (
-    <div>
-      <ConverterForm addFormData={addFormData} />
-    </div>
+      <ContainerWrapper>
+        <Title>Konwerter Walut</Title>
+        <ConverterForm addFormData={addFormData} />
+      </ContainerWrapper>
   )
 }
 

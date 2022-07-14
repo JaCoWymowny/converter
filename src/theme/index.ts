@@ -1,13 +1,21 @@
 const theme = {
   colors: {
-    primaryColor: "#FF0000",
-    secondaryColor: "#00ff00",
-    detailColor: "#00FFFF",
-    white: "fff"
+    primary: '#335566',
+    secondary: '#37DEFB',
+    secondaryHover: '#214456',
+    details: '#E0E5EC'
+  },
+
+  buttonColors: {
+    primaryDefault: '#345566',
+    primaryHover: '#214456',
+    primaryDisabled: '#A3B1C6',
+    secondaryDefault: '#FFFFFF',
+    secondaryHover: '#FFFFFF'
   },
 
   fontFamily: {
-    primaryFont: '"Roboto", "sans-serif"',
+    primaryFont: "Open Sans",
   },
 }
 
