@@ -7,6 +7,7 @@ import ConvertsHistory from "../../pages/ConvertsHistory";
 import { useEffect, useState } from "react";
 import { HistoryRecords } from "../../interfaces/dbData";
 import { getDataFromLocalStorage } from "../../helpers/getDataFromLocalStorage";
+import { BackgroundContainerWrapper, ContainerWrapper } from "./styles";
 
 const Layout = () => {
   const [historyRecords, setHistoryRecords] = useState<HistoryRecords[]>(getDataFromLocalStorage());
@@ -23,24 +24,26 @@ const Layout = () => {
     setHistoryRecords(updatedRecords);
   }
 
-  console.log(historyRecords);
-
   return (
-    <div>
+    <BackgroundContainerWrapper>
       <Routes>
         <Route path="/" element={
-          <Converter historyDataHandler={historyDataHandler}/>
+          <ContainerWrapper style={{"height" : "40vh"}}>
+            <Converter historyDataHandler={historyDataHandler}/>
+          </ContainerWrapper>
         }
         />
         <Route path="/ConverterWithHistory" element={
           <>
-            <Converter historyDataHandler={historyDataHandler}/>
-            <ConvertsHistory historyRecords={historyRecords} historyDataDelete={historyDataDelete}/>
+            <ContainerWrapper>
+              <Converter historyDataHandler={historyDataHandler}/>
+              <ConvertsHistory historyRecords={historyRecords} historyDataDelete={historyDataDelete}/>
+            </ContainerWrapper>
           </>
         }
         />
       </Routes>
-    </div>
+    </BackgroundContainerWrapper>
   )
 }
 
