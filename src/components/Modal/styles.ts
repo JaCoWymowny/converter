@@ -12,20 +12,36 @@ export const ModalOverlay = styled.div`
 
 export const StyledModal = styled.div`
   width: 546px;
-  height: 140px;
+  height: 160px;
   position: fixed;
   top: 70%;
   left: 52%;
   z-index: 102;
   background: white;
   border-left: 10px solid red;
+  
+  @media (max-width: 1800px) {
+    top: 60%;
+    left: 40%;
+  }
+  @media (max-width: 1100px) {
+    font-size: 12px;
+    width: 300px;
+    height: 120px;
+    top: 50%;
+    left: 40%;
+  }
+  @media (max-width: 768px) {
+    width: 220px;
+    left: 30%;
+    font-size: 10px;
+  }
 `;
 
 export const ModalContent = styled.div`
   top: 1.25em;
   margin-right: 0.31em;
   margin-left: 1em;
-  overflow-y: scroll;
   height: 100%;
   padding: 0.62em;
   display: flex;
