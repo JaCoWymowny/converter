@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { ExchangeFormData } from "../interfaces/dbData";
 
@@ -7,7 +7,7 @@ const fetchDataToExchange = (submittedData: ExchangeFormData | null) => {
 }
 
 export const useExchangeCurrency = (submittedData: ExchangeFormData | null) => {
-  return useQuery(['exchange', ], () => fetchDataToExchange(submittedData), {
+  return useQuery<any , AxiosError>(['exchange', ], () => fetchDataToExchange(submittedData), {
     enabled: false
   })
 }

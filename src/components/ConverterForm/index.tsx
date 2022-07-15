@@ -35,6 +35,7 @@ interface Props {
 const ConverterForm: FC<Props> = ({ addFormData }) => {
   const [showModal, setShowModal] = useState(false);
   const [formError, setFormError] = useState<boolean | undefined>(false);
+  const [errorQuery, setErrorQuery] = useState<any>();
   const today = new Date().toISOString().split("T")[0];
   const [chosenCurrencyAmountValue, setChosenCurrencyAmountValue] = useState('');
   const [chosenCurrencyResultValue, setChosenCurrencyResultValue] = useState('');
@@ -49,12 +50,14 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<ExchangeFormData>({
     mode: 'onChange'
   });
-  const { isLoading, refetch } = useExchangeCurrency(submittedData)
+  const { isLoading, refetch, isError, error } = useExchangeCurrency(submittedData)
 
   const {
     currencyList,
     isDataLoading,
-    currencyOnLoad
+    currencyOnLoad,
+    isQueryError,
+    queryError
   } = useListOfCurrency();
 
   useEffect(() => {
@@ -98,6 +101,10 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
       reset();
     }
     setFormError(false);
+    if (isError || isQueryError) {
+      setErrorQuery(error?.message || queryError?.message);
+    }
+    setErrorQuery(null);
     setChosenCurrencyAmountValue('');
     setChosenCurrencyResultValue('');
   };
@@ -139,6 +146,7 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
       <Modal show={showModal} onClose={() => setShowModal(false)}>
         {formError &&
           <ErrorMessage>Pole "kwota" nie może być puste i/lub waluty nie mogą być takie same.</ErrorMessage>}
+        {errorQuery && <ErrorMessage>{errorQuery}</ErrorMessage>}
       </Modal>
       <FormWrapper>
         <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
