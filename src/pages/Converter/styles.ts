@@ -16,6 +16,11 @@ export const Title = styled.div`
     margin-bottom: 12px;
     max-width: 900px;
   }
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+    max-width: 450px;
+    min-width: 300px;
+  }
 `;
 
 export const ContainerWrapper = styled.div`
@@ -26,4 +31,7 @@ export const ContainerWrapper = styled.div`
   font-weight: 700;
   width: 90%;
   margin: 10px 50px;
+  @media (max-width: 768px) {
+    width: 460px;
+  }
 `;

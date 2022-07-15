@@ -43,7 +43,7 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
   const [submittedData, setSubmittedData] = useState<ExchangeFormData | null>(null);
   const [dataFromRequest, setDataFromRequest] = useState<number | null>(null);
   const [locationText, setLocationText] = useState("Pokaż Historię");
-  const currencyResultValue = currencyResultHandler(currencyResult, chosenCurrencyResultValue);
+
   const location = useLocation();
   const navigate = useNavigate();
   const { register, handleSubmit, reset, formState: { errors } } = useForm<ExchangeFormData>({
@@ -62,6 +62,8 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
 //       currencyOnLoad()
 //     }
 //   },[currencyList, isDataLoading, currencyOnLoad])
+
+  const currencyResultValue = currencyResultHandler(currencyResult, chosenCurrencyResultValue);
 
   useEffect(() => {
     if (submittedData) {

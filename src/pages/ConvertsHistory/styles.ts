@@ -16,7 +16,10 @@ export const Container = styled.div`
     border-radius: unset;
   }
   @media (max-width: 915px) {
-    min-width: 900px;
+    max-width: 900px;
+  }
+  @media (max-width: 768px) {
+    max-width: 460px;
   }
 `;
 
@@ -24,6 +27,7 @@ export const TableWrapper = styled.div`
   width: 100%;
   
   table {
+    font-size: 10px;
     display: block;
     width: calc(100% - 18px);
     border-collapse: collapse;
@@ -61,33 +65,44 @@ export const TableWrapper = styled.div`
     
   .first-thead-cell {
     padding-left: 20px;
-    //width: 270px;
     width: 23%;
     text-align: left;
   }
 
   .second-thead-cell {
-    //width: 280px;
     text-align: left;
     width: 17%;
+
+    @media (max-width: 768px) {
+      text-align: right;
+    }
   }
 
   .third-thead-cell {
-    //width: 350px;
     width: 26%;
     text-align: right;
+    
+    @media (max-width: 768px) {
+      margin-left: 15px;
+    }
   }
   
   .fourth-thead-cell {
-    //width: 200px;
     width: 23%;
+
+    @media (max-width: 768px) {
+      width: 13%;
+    }
   }
   
   .fifth-thead-cell {
-    //width: 150px;
     width: 18%;
     text-align: right;
     padding-right: 16px;
+
+    @media (max-width: 768px) {
+      padding-right: 5px;
+    }
   }
   // end of thead cell
   
@@ -103,27 +118,39 @@ export const TableWrapper = styled.div`
   }
   
   .first-tbody-cell {
-    //width: 200px;
     width: 22%;
     text-align: left;
     padding-left: 40px;
+    
+    @media (max-width: 768px) {
+      padding-left: 0;
+      width: 18%;
+      margin-right: 40px;
+    }
   }
 
   .second-tbody-cell {
     text-align: left;
-    //width: 250px;
     width: 22%;
     padding-left: 30px;
+
+    @media (max-width: 768px) {
+      padding-left: 0;
+      padding-right:3px;
+      width: 20%;
+    }
   }
   
   .third-tbody-cell {
-    //width: 300px;
     width: 26%;
     text-align: right;
+    
+    @media (max-width: 768px) {
+      width: 18%;
+    }
   }
   
   .fourth-tbody-cell {
-    //width: 120px;
     width: 22%;
     text-align: right;
     padding-left: 120px;
@@ -131,15 +158,22 @@ export const TableWrapper = styled.div`
     @media (max-width: 1100px) {
       padding-left: 70px;
     }
+    @media (max-width: 768px) {
+      padding-left: 10px;
+      width: 15%;
+    }
   }
   
   .fifth-tbody-cell {
-    //width: 210px;
     width: 20%;
     text-align: right;
     padding-right: 16px;
-    font-weight: 600;
     font-size: 16px;
+    font-weight: 600;
+    
+    @media (max-width: 768px) {
+      font-size: 10px;
+    }
   }
   
   @media (max-width: 1000px) {
