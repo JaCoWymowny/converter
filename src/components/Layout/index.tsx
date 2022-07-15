@@ -6,7 +6,7 @@ import Converter from "../../pages/Converter";
 import ConvertsHistory from "../../pages/ConvertsHistory";
 import { useEffect, useState } from "react";
 import { HistoryRecords } from "../../interfaces/dbData";
-import { getDataFromLocalStorage } from "../../helpers/getDataFromLocalStorage";
+import { getDataFromLocalStorage } from "../../services/getDataFromLocalStorage";
 import { BackgroundContainerWrapper, FirstLinkContainerWrapper, ContainerWrapper } from "./styles";
 
 const Layout = () => {

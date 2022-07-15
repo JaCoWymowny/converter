@@ -2,6 +2,13 @@ import styled from "styled-components";
 import arrow from "../../images/arrow.svg";
 import bidirectional from "../../images/bidirectional.svg";
 
+export const ErrorMessage = styled.span`
+  margin: 12px 0;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
+  color: ${(props) => props.theme.colors.primary};
+  font-size: 16px;
+`;
+
 export const FormWrapper = styled.div`
   margin-top: 30px;
   max-width: 1200px;

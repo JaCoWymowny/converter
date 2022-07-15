@@ -15,6 +15,9 @@ export const Container = styled.div`
   @media (min-width: 1900px) {
     border-radius: unset;
   }
+  @media (max-width: 915px) {
+    min-width: 900px;
+  }
 `;
 
 export const TableWrapper = styled.div`
@@ -140,7 +143,7 @@ export const TableWrapper = styled.div`
   }
   
   @media (max-width: 1000px) {
-    max-width: 700px;
+    max-width: 800px;
   }
 `
 

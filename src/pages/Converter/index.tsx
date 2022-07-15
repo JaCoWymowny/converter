@@ -3,12 +3,12 @@ import { ExchangeFormData, HistoryRecords } from "../../interfaces/dbData";
 import { FC } from "react";
 import { ContainerWrapper, Title } from "./styles";
 
+
 interface Props {
   historyDataHandler: (newHistoryItem: HistoryRecords) => void
 }
 
 const ConverterPage:FC<Props> = ({historyDataHandler}) => {
-
   const addFormData = (
     submittedCurrencyData: ExchangeFormData | null,
     conversionResult: number | null,
