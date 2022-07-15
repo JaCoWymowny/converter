@@ -9,6 +9,12 @@ export const Container = styled.div`
   justify-content: center;
   padding: 2em 3em;
   background: white;
+  border-bottom-left-radius: 33px;
+  border-bottom-right-radius: 33px;
+  
+  @media (min-width: 1900px) {
+    border-radius: unset;
+  }
 `;
 
 export const TableWrapper = styled.div`
@@ -118,6 +124,10 @@ export const TableWrapper = styled.div`
     width: 22%;
     text-align: right;
     padding-left: 120px;
+
+    @media (max-width: 1100px) {
+      padding-left: 70px;
+    }
   }
   
   .fifth-tbody-cell {
@@ -127,6 +137,10 @@ export const TableWrapper = styled.div`
     padding-right: 16px;
     font-weight: 600;
     font-size: 16px;
+  }
+  
+  @media (max-width: 1000px) {
+    max-width: 700px;
   }
 `
 

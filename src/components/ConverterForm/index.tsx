@@ -12,16 +12,18 @@ import {
   FieldWrapper,
   FormField,
   FormArrowField,
+  SelectWrapper,
+  CustomFieldWrapper,
   Select,
   Label,
-  TestContainer,
+  CustomContainer,
   Input,
   ResultWrapper,
   CurrencyResult,
   ButtonsWrapper,
   PlaceholderForInput,
   ConvertButton,
-  HistoryButton
+  HistoryButton, SelectFormField
 } from "./styles";
 
 interface Props {
@@ -109,7 +111,8 @@ const ConverterForm:FC<Props> = ({ addFormData }) => {
     <FormWrapper>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FieldWrapper>
-          <FormField>
+          <SelectWrapper>
+          <SelectFormField>
             <Label>
               Przelicz z
             </Label>
@@ -124,12 +127,12 @@ const ConverterForm:FC<Props> = ({ addFormData }) => {
               <option value='EUR'>EUR</option>
               {/*{handleOptions()}*/}
             </Select>
-          </FormField>
+          </SelectFormField>
           <FormArrowField>
             <Arrow />
           </FormArrowField>
 
-          <FormField>
+          <SelectFormField>
             <Label>
               Przelicz na
             </Label>
@@ -144,12 +147,14 @@ const ConverterForm:FC<Props> = ({ addFormData }) => {
               <option value='PLN'>PLN</option>
               {/*{handleOptions()}*/}
             </Select>
-          </FormField>
+          </SelectFormField>
+          </SelectWrapper>
+          <CustomFieldWrapper>
           <FormField>
             <Label>
               Kwota
             </Label>
-            <TestContainer>
+            <CustomContainer>
               <Input
                 {...register("amount", { required: true })}
                 id='amount'
@@ -160,13 +165,14 @@ const ConverterForm:FC<Props> = ({ addFormData }) => {
               <PlaceholderForInput>
                 {chosenCurrencyAmountValue}
               </PlaceholderForInput>
-            </TestContainer>
+            </CustomContainer>
           </FormField>
           <ResultWrapper>
             {isLoading && <span>Checking..</span>}
-            {!isLoading && <span>Wynik</span>}
+            {!isLoading && <span className="text-field">Wynik</span>}
             {!isLoading && currencyResultValue}
           </ResultWrapper>
+          </CustomFieldWrapper>
         </FieldWrapper>
         <ButtonsWrapper>
             <HistoryButton onClick={() => { locationHandler()}}>
