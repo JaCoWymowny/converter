@@ -51,17 +51,17 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
   });
   const { isLoading, refetch } = useExchangeCurrency(submittedData)
 
-//   const {
-//   currencyList,
-//   isDataLoading,
-//   currencyOnLoad
-// } = useListOfCurrency();
-//
-//   useEffect(() => {
-//     if (!currencyList && !isDataLoading) {
-//       currencyOnLoad()
-//     }
-//   },[currencyList, isDataLoading, currencyOnLoad])
+  const {
+  currencyList,
+  isDataLoading,
+  currencyOnLoad
+} = useListOfCurrency();
+
+  useEffect(() => {
+    if (!currencyList && !isDataLoading) {
+      currencyOnLoad()
+    }
+  },[currencyList, isDataLoading, currencyOnLoad])
 
   const currencyResultValue = currencyResultHandler(currencyResult, chosenCurrencyResultValue);
 
@@ -117,17 +117,17 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
 
   };
 
-// const handleOptions = () => {
-//   if (!isDataLoading && currencyList) {
-//     const allData = currencyList?.data.supported_codes;
-//     const code = allData.map((e: string) => e[0])
-//     return code.map((item: string, index: Key) => {
-//       return (
-//         <option key={index} value={item}>{item}</option>
-//       )
-//     })
-//   }
-// }
+const handleOptions = () => {
+  if (!isDataLoading && currencyList) {
+    const allData = currencyList?.data.supported_codes;
+    const code = allData.map((e: string) => e[0])
+    return code.map((item: string, index: Key) => {
+      return (
+        <option key={index} value={item}>{item}</option>
+      )
+    })
+  }
+}
 
   return (
     <>
@@ -146,12 +146,7 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
                   {...register('exchangeFrom', { required: true })}
                   onChange={(e) => setChosenCurrencyAmountValue(e.target.value)}
                 >
-                  <option value='EUR'>EUR</option>
-                  <option value='EUR'>EUR</option>
-                  <option value='EUR'>EUR</option>
-                  <option value='EUR'>EUR</option>
-                  <option value='EUR'>EUR</option>
-                  {/*{handleOptions()}*/}
+                  {handleOptions()}
                 </Select>
               </SelectFormField>
               <FormArrowField>
@@ -166,12 +161,7 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
                   {...register('exchangeTo', { required: true })}
                   onChange={(e) => setChosenCurrencyResultValue(e.target.value)}
                 >
-                  <option value='PLN'>PLN</option>
-                  <option value='PLN'>PLN</option>
-                  <option value='PLN'>PLN</option>
-                  <option value='PLN'>PLN</option>
-                  <option value='PLN'>PLN</option>
-                  {/*{handleOptions()}*/}
+                  {handleOptions()}
                 </Select>
               </SelectFormField>
             </SelectWrapper>
