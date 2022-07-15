@@ -7,6 +7,15 @@ export const ErrorMessage = styled.span`
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
   color: ${(props) => props.theme.colors.primary};
   font-size: 16px;
+  
+  @media(max-width: 1500px) {
+    font-size: 12px;
+    margin: 8px 0;
+  }
+  @media(max-width: 768px) {
+    font-size: 10px;
+    margin: 5px 0;
+  }
 `;
 
 export const FormWrapper = styled.div`
@@ -39,7 +48,11 @@ export const FieldWrapper = styled.div`
 export const SelectWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 300px;
+  width: 230px;
+  
+  @media (min-width: 768px) {
+    width: 460px;
+  }
   
   @media (min-width: 915px) {
     display: flex;
@@ -73,7 +86,7 @@ export const CustomFieldWrapper = styled.div`
     justify-content: space-between;
   }
   @media (max-width: 768px) {
-    max-width: 300px;
+    max-width: 230px;
   }
 `;
 
@@ -95,7 +108,8 @@ export const SelectFormField = styled.div`
     width: 200px;
   }
   @media (max-width: 768px) {
-    max-width: 120px;
+    max-width: 100px;
+    margin: 0;
   }
 `;
 
@@ -106,6 +120,9 @@ export const FormField = styled.div`
  margin: 20px;
   @media (min-width: 1800px) {
     margin-left: 70px;
+  }
+  @media (max-width: 768px) {
+    margin: 20px 0;
   }
 `;
 
@@ -120,6 +137,9 @@ export const FormArrowField = styled.div`
   
   @media (max-width: 1100px) {
     margin-left: 0;
+  } 
+  @media (max-width: 768px) {
+    margin-right: 12px;
   }
 `;
 
@@ -164,7 +184,7 @@ export const Select = styled.select`
     width: 180px;
   }
   @media (max-width: 768px) {
-    width: 100px;
+    width: 90px;
   }
 `;
 
@@ -221,19 +241,27 @@ export const Input = styled.input`
   }
   
   @media (max-width: 1800px) {
-    width: 240px
+    width: 250px
+  }
+
+  @media (max-width: 1500px) {
+    width: 200px
+  }
+
+  @media (max-width: 1300px) {
+    width: 160px
   }
   
   @media (max-width: 1100px) {
     font-size: 12px;
-    width: 200px;
+    width: 150px;
   }
   
   @media (max-width: 915px) {
     width: 180px;
   }
   @media (max-width: 768px) {
-    width: 100px;
+    width: 90px;
     font-size: 10px;
   }
 `;
@@ -266,18 +294,25 @@ export const CurrencyResult = styled.span`
   padding: 0 10px;
   
   @media (max-width: 1800px) {
-    max-width: 240px;
+    max-width: 250px;
   }
 
-  @media (max-width: 1100px) {
-    max-width: 200px;
+  @media (max-width: 1500px) {
+    max-width: 160px;
   }
   
   @media (max-width: 915px) {
-    max-width: 180px;
+    max-width: 160px;
   }
   @media (max-width: 768px) {
-    max-width: 100px;
+    max-width: 90px;
+    margin-left: 10px;
+  }
+
+  .placeholder-margin {
+    @media (max-width: 768px) {
+      margin-left: 15px;
+    }
   }
 `;
 
@@ -303,10 +338,12 @@ export const PlaceholderForInput = styled.span`
   
   @media (max-width: 1100px) {
     font-size: 12px;
+    right: 18%;
   }
   @media (max-width: 768px) {
     font-size: 10px;
     top: 20px;
+    right: 10%;
   }
 `;
 
@@ -327,7 +364,7 @@ export const ButtonsWrapper = styled.div`
     align-self: center;
   }
   @media (max-width: 768px) {
-    max-width: 340px;
+    max-width: 270px;
   }
 `;
 
@@ -355,7 +392,7 @@ export const ConvertButton = styled.button`
   }
 
   @media (max-width:768px ) {
-    width: 140px;
+    width: 120px;
     height: 30px;
     font-size: 12px;
   }
@@ -386,7 +423,7 @@ export const HistoryButton = styled.div`
     margin-right: 20px;
   }
   @media (max-width:768px ) {
-    width: 140px;
+    width: 120px;
     height: 30px;
     font-size: 12px;
   }

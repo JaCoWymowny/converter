@@ -7,7 +7,6 @@ export const Container = styled.div`
   color: black;
   display: flex;
   justify-content: center;
-  padding: 2em 3em;
   background: white;
   border-bottom-left-radius: 33px;
   border-bottom-right-radius: 33px;
@@ -26,12 +25,23 @@ export const Container = styled.div`
 export const TableWrapper = styled.div`
   width: 100%;
   
+  @media (max-width: 768px) {
+    width: 250px;
+  }
+  
   table {
-    font-size: 10px;
+    font-size: 16px;
     display: block;
     width: calc(100% - 18px);
     border-collapse: collapse;
     color: ${(props) => props.theme.colors.primary};
+    
+    @media (max-width: 1100px) {
+      font-size: 12px;
+    }
+    @media (max-width: 915px) {
+      font-size: 10px;
+    }
   }
   
   tbody {
@@ -170,14 +180,14 @@ export const TableWrapper = styled.div`
     padding-right: 16px;
     font-size: 16px;
     font-weight: 600;
+
+    @media (max-width: 1100px) {
+      font-size: 12px;
+    }
     
-    @media (max-width: 768px) {
+    @media (max-width: 915px) {
       font-size: 10px;
     }
-  }
-  
-  @media (max-width: 1000px) {
-    max-width: 800px;
   }
 `
 

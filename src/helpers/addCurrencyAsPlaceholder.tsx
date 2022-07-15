@@ -6,14 +6,14 @@ export const currencyResultHandler = (currencyResult: number, chosenCurrencyValu
     return (
       <CurrencyResult>
         <Placeholder>Wynik</Placeholder>
-      <Placeholder>{chosenCurrencyValue}</Placeholder>
+      <Placeholder className="placeholder-margin">{chosenCurrencyValue}</Placeholder>
       </CurrencyResult>
     )
   } else {
     return (
       <CurrencyResult>
         <Placeholder>{currencyResult}</Placeholder>
-      <Placeholder>{chosenCurrencyValue}</Placeholder>
+        <Placeholder>{chosenCurrencyValue}</Placeholder>
       </CurrencyResult>
     )
   }
