@@ -39,7 +39,7 @@ export const FieldWrapper = styled.div`
 export const SelectWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 460px;
+  width: 300px;
   
   @media (min-width: 915px) {
     display: flex;
@@ -72,6 +72,9 @@ export const CustomFieldWrapper = styled.div`
     width: 460px;
     justify-content: space-between;
   }
+  @media (max-width: 768px) {
+    max-width: 300px;
+  }
 `;
 
 
@@ -90,6 +93,9 @@ export const SelectFormField = styled.div`
   @media (max-width: 915px) {
     max-width: 200px;
     width: 200px;
+  }
+  @media (max-width: 768px) {
+    max-width: 120px;
   }
 `;
 
@@ -157,6 +163,9 @@ export const Select = styled.select`
   @media (max-width: 915px) {
     width: 180px;
   }
+  @media (max-width: 768px) {
+    width: 100px;
+  }
 `;
 
 export const Label = styled.label`
@@ -167,6 +176,9 @@ export const Label = styled.label`
     font-size: 12px;
     width: 120px;
   }
+  @media (max-width: 768px) {
+    width: 90px;
+  }
 `;
 
 export const CustomContainer = styled.div`
@@ -176,6 +188,9 @@ export const CustomContainer = styled.div`
   
   @media (max-width: 1100px) {
     width: 180px;
+  }
+  @media (max-width: 768px) {
+    width: 100px;
   }
 `;
 
@@ -217,6 +232,10 @@ export const Input = styled.input`
   @media (max-width: 915px) {
     width: 180px;
   }
+  @media (max-width: 768px) {
+    width: 100px;
+    font-size: 10px;
+  }
 `;
 
 export const ResultWrapper = styled.div`
@@ -230,6 +249,9 @@ export const ResultWrapper = styled.div`
     
     @media (max-width: 1100px) {
       font-size: 12px;
+    }
+    @media(max-width: 768px) {
+      max-width: 90px;
     }
   }
 `;
@@ -254,6 +276,9 @@ export const CurrencyResult = styled.span`
   @media (max-width: 915px) {
     max-width: 180px;
   }
+  @media (max-width: 768px) {
+    max-width: 100px;
+  }
 `;
 
 export const Placeholder = styled.span`
@@ -261,6 +286,10 @@ export const Placeholder = styled.span`
   
   @media (max-width: 1100px) {
     font-size: 12px;
+  }
+  @media (max-width: 768px) {
+    font-size: 10px;
+    width: 90px;
   }
 `;
 
@@ -274,6 +303,10 @@ export const PlaceholderForInput = styled.span`
   
   @media (max-width: 1100px) {
     font-size: 12px;
+  }
+  @media (max-width: 768px) {
+    font-size: 10px;
+    top: 20px;
   }
 `;
 
@@ -292,6 +325,9 @@ export const ButtonsWrapper = styled.div`
     max-width: 460px;
     margin-right: 0;
     align-self: center;
+  }
+  @media (max-width: 768px) {
+    max-width: 340px;
   }
 `;
 
@@ -316,6 +352,12 @@ export const ConvertButton = styled.button`
   
   @media (max-width: 915px) {
     width: 195px;
+  }
+
+  @media (max-width:768px ) {
+    width: 140px;
+    height: 30px;
+    font-size: 12px;
   }
 `;
 
@@ -342,6 +384,11 @@ export const HistoryButton = styled.div`
   
   @media (max-width: 915px) {
     margin-right: 20px;
+  }
+  @media (max-width:768px ) {
+    width: 140px;
+    height: 30px;
+    font-size: 12px;
   }
 `;
 

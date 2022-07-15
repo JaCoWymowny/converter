@@ -16,6 +16,12 @@ export const BackgroundContainerWrapper = styled.div`
     width: 900px;
   }
   
+  @media (max-width: 768px) {
+    max-width: 460px;
+    align-items: baseline;
+    min-height: 60vh;
+  }
+  
   &::before {
     z-index: -10;
     content: "";
@@ -28,8 +34,11 @@ export const BackgroundContainerWrapper = styled.div`
     opacity: 0.27;
     
     @media (max-width: 915px) {
-      min-width: 900px;
+      max-width: 900px;
       width: 900px;
+    }
+    @media (max-width: 768px) {
+      max-width: 460px;
     }
   }
   &:after {
@@ -43,11 +52,13 @@ export const BackgroundContainerWrapper = styled.div`
     background:  transparent linear-gradient(180deg, #E0E5EC 0%, #C2CBD9 100%) 0 0 no-repeat padding-box;
     opacity: 0.63;
     @media (max-width: 915px) {
-      min-width: 900px;
+      max-width: 900px;
       width: 900px;
     }
+    @media (max-width: 768px) {
+      max-width: 460px;
+    }
   }
-  color: #ebf2f8;
 `;
 
 export const ContainerWrapper = styled.div`
@@ -77,6 +88,11 @@ export const ContainerWrapper = styled.div`
   @media (max-width: 915px) {
     max-width: 700px;
   }
+  @media (max-width: 768px) {
+    min-width: 200px;
+    max-width: 400px;
+    height: 75vh;
+  }
 `;
 
 export const FirstLinkContainerWrapper = styled.div`
@@ -105,6 +121,11 @@ export const FirstLinkContainerWrapper = styled.div`
   
   @media (max-width: 915px) {
     max-width: 700px;
+  }
+  @media (max-width: 768px) {
+    min-width: 200px;
+    max-width: 400px;
+    height: 60vh;
   }
 `;
 
