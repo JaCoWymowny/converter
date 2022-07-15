@@ -61,7 +61,7 @@ const ConverterForm:FC<Props> = ({ addFormData }) => {
 
   useEffect(() => {
     if (submittedData) {
-      refetch().then((data) => setDataFromRequest(data.data.data.conversion_result))
+      refetch().then((data) => setDataFromRequest(data.data.data.conversion_result.toFixed(2)))
     }
     if (location.pathname === '/ConverterWithHistory') {
       setLocationText('Ukryj Historię')
