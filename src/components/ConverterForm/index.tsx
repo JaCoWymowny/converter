@@ -36,8 +36,8 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
   const [showModal, setShowModal] = useState(false);
   const [formError, setFormError] = useState<boolean | undefined>(false);
   const today = new Date().toISOString().split("T")[0];
-  const [chosenCurrencyAmountValue, setChosenCurrencyAmountValue] = useState('AED');
-  const [chosenCurrencyResultValue, setChosenCurrencyResultValue] = useState('AED');
+  const [chosenCurrencyAmountValue, setChosenCurrencyAmountValue] = useState('');
+  const [chosenCurrencyResultValue, setChosenCurrencyResultValue] = useState('');
   const [currencyResult, setCurrencyResult] = useState(0);
   const [date] = useState<string>(today);
   const [submittedData, setSubmittedData] = useState<ExchangeFormData | null>(null);
@@ -52,16 +52,16 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
   const { isLoading, refetch } = useExchangeCurrency(submittedData)
 
   const {
-  currencyList,
-  isDataLoading,
-  currencyOnLoad
-} = useListOfCurrency();
+    currencyList,
+    isDataLoading,
+    currencyOnLoad
+  } = useListOfCurrency();
 
   useEffect(() => {
     if (!currencyList && !isDataLoading) {
       currencyOnLoad()
     }
-  },[currencyList, isDataLoading, currencyOnLoad])
+  }, [currencyList, isDataLoading, currencyOnLoad])
 
   const currencyResultValue = currencyResultHandler(currencyResult, chosenCurrencyResultValue);
 
@@ -82,19 +82,24 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
       setDataFromRequest(null)
     }
   }, [dataFromRequest, date, addFormData, submittedData])
-
   const onSubmit = (formValues: ExchangeFormData) => {
     const validate = validateForm(chosenCurrencyAmountValue, chosenCurrencyResultValue);
     setFormError(validate);
     if (validate) {
       setShowModal(true);
+      reset();
+      setFormError(false);
       return
+    } else {
+      const formData = {
+        ...formValues
+      };
+      setSubmittedData(formData);
+      reset();
     }
-    const formData = {
-      ...formValues
-    };
-    setSubmittedData(formData);
-    reset();
+    setFormError(false);
+    setChosenCurrencyAmountValue('');
+    setChosenCurrencyResultValue('');
   };
 
   const locationHandler = () => {
@@ -117,22 +122,23 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
 
   };
 
-const handleOptions = () => {
-  if (!isDataLoading && currencyList) {
-    const allData = currencyList?.data.supported_codes;
-    const code = allData.map((e: string) => e[0])
-    return code.map((item: string, index: Key) => {
-      return (
-        <option key={index} value={item}>{item}</option>
-      )
-    })
+  const handleOptions = () => {
+    if (!isDataLoading && currencyList) {
+      const allData = currencyList?.data.supported_codes;
+      const code = allData.map((e: string) => e[0])
+      return code.map((item: string, index: Key) => {
+        return (
+          <option key={index} value={item}>{item}</option>
+        )
+      })
+    }
   }
-}
 
   return (
     <>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        {formError && <ErrorMessage>Pole "kwota" nie może być puste i/lub waluty nie mogą być takie same.</ErrorMessage>}
+        {formError &&
+          <ErrorMessage>Pole "kwota" nie może być puste i/lub waluty nie mogą być takie same.</ErrorMessage>}
       </Modal>
       <FormWrapper>
         <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
@@ -146,6 +152,7 @@ const handleOptions = () => {
                   {...register('exchangeFrom', { required: true })}
                   onChange={(e) => setChosenCurrencyAmountValue(e.target.value)}
                 >
+                  <option value=""></option>
                   {handleOptions()}
                 </Select>
               </SelectFormField>
@@ -161,6 +168,7 @@ const handleOptions = () => {
                   {...register('exchangeTo', { required: true })}
                   onChange={(e) => setChosenCurrencyResultValue(e.target.value)}
                 >
+                  <option value=''></option>
                   {handleOptions()}
                 </Select>
               </SelectFormField>
