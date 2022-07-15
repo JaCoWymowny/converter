@@ -4,6 +4,7 @@ import bidirectional from "../../images/bidirectional.svg";
 
 export const FormWrapper = styled.div`
   margin-top: 30px;
+  max-width: 1200px;
 `;
 
 export const Form = styled.form`
@@ -17,20 +18,96 @@ export const Form = styled.form`
 export const FieldWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  //////////////////////////
+  @media (max-width: 1800px) {
+    max-width: 1100px;
+  }
+
+  @media (max-width: 915px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: unset;
+  }
+`;
+
+export const SelectWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 460px;
+  
+  @media (min-width: 915px) {
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+  }
+  
+  
+  @media (min-width: 1800px) {
+    width: 350px;
+  }
+  
+  @media (min-width: 1680px) {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+  }
+`;
+
+export const CustomFieldWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  
+  @media (max-width: 1680px) {
+    max-width: 400px;
+    justify-content: flex-end;
+  }
+  @media (max-width: 915px) {
+    max-width: 460px;
+    width: 460px;
+    justify-content: space-between;
+  }
+`;
+
+
+
+export const SelectFormField = styled.div`
+ display: flex;
+ flex-direction: column;
+ gap: 5px;
+ margin: 20px;
+  max-width: 150px;
+  
+  @media (max-width: 1800px) {
+    max-width: 120px;
+  }
+  
+  @media (max-width: 915px) {
+    max-width: 200px;
+    width: 200px;
+  }
 `;
 
 export const FormField = styled.div`
  display: flex;
  flex-direction: column;
  gap: 5px;
- margin: 20px;  
+ margin: 20px;
+  @media (min-width: 1800px) {
+    margin-left: 70px;
+  }
 `;
 
 export const FormArrowField = styled.div`
- display: flex;
- flex-direction: column;
+  display: flex;
+  flex-direction: column;
   margin-top: 20px;
+  
+  @media (max-width: 1800px) {
+    margin-left: 15px;
+  }
+  
+  @media (max-width: 1100px) {
+    margin-left: 0;
+  }
 `;
 
 export const Arrow = styled.div`
@@ -61,17 +138,38 @@ export const Select = styled.select`
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
   color: ${(props) => props.theme.colors.primary};
   font-size: 16px;
+  
+  @media (max-width: 1680px) {
+    width: 115px;
+  }
+  
+  @media (max-width: 1100px) {
+    font-size: 12px;
+  }
+  
+  @media (max-width: 915px) {
+    width: 180px;
+  }
 `;
 
 export const Label = styled.label`
  font-weight: 600;
   font-size: 16px;
+  
+  @media (max-width: 1120px) {
+    font-size: 12px;
+    width: 120px;
+  }
 `;
 
-export const TestContainer = styled.div`
+export const CustomContainer = styled.div`
   display: inline-block;
   position: relative;
   overflow: hidden;
+  
+  @media (max-width: 1100px) {
+    width: 180px;
+  }
 `;
 
 export const Input = styled.input`
@@ -99,6 +197,19 @@ export const Input = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
+  
+  @media (max-width: 1800px) {
+    width: 240px
+  }
+  
+  @media (max-width: 1100px) {
+    font-size: 12px;
+    width: 200px;
+  }
+  
+  @media (max-width: 915px) {
+    width: 180px;
+  }
 `;
 
 export const ResultWrapper = styled.div`
@@ -106,6 +217,14 @@ export const ResultWrapper = styled.div`
   flex-direction: column;
   gap: 5px;
   margin: 20px;
+  
+  .text-field {
+    max-width: 120px;
+    
+    @media (max-width: 1100px) {
+      font-size: 12px;
+    }
+  }
 `;
 
 export const CurrencyResult = styled.span`
@@ -116,10 +235,26 @@ export const CurrencyResult = styled.span`
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
+  
+  @media (max-width: 1800px) {
+    max-width: 240px;
+  }
+
+  @media (max-width: 1100px) {
+    max-width: 200px;
+  }
+  
+  @media (max-width: 915px) {
+    max-width: 180px;
+  }
 `;
 
 export const Placeholder = styled.span`
   opacity: 0.6;
+  
+  @media (max-width: 1100px) {
+    font-size: 12px;
+  }
 `;
 
 export const PlaceholderForInput = styled.span`
@@ -129,12 +264,28 @@ export const PlaceholderForInput = styled.span`
   right: 5%;
   bottom: 0;
   margin: auto 0;
+  
+  @media (max-width: 1100px) {
+    font-size: 12px;
+  }
 `;
 
 
 export const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+  padding-bottom: 30px;
+  margin-right: 10px;
+  
+  @media (max-width: 1800px) {
+    margin-right: 20px;
+  }
+  @media (max-width: 915px) {
+    justify-content: space-between;
+    max-width: 460px;
+    margin-right: 0;
+    align-self: center;
+  }
 `;
 
 export const ConvertButton = styled.button`
@@ -154,6 +305,10 @@ export const ConvertButton = styled.button`
   &:hover {
     background: ${(props) => props.theme.buttonColors.primaryHover};
     box-shadow: 5px 5px 12px #98ADCD;
+  }
+  
+  @media (max-width: 915px) {
+    width: 195px;
   }
 `;
 
@@ -176,6 +331,10 @@ export const HistoryButton = styled.div`
     background: ${(props) => props.theme.buttonColors.secondaryHover};
     box-shadow: 5px 5px 12px #98ADCD;
     color: ${(props) => props.theme.buttonColors.primaryHover};
+  }
+  
+  @media (max-width: 915px) {
+    margin-right: 20px;
   }
 `;
 

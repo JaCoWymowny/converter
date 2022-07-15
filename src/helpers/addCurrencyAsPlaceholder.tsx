@@ -18,11 +18,3 @@ export const currencyResultHandler = (currencyResult: number, chosenCurrencyValu
     )
   }
 }
-
-export const currencyAmountHandler = (chosenCurrencyValue: string) => {
-    return (
-      <CurrencyResult>
-        <Placeholder>{chosenCurrencyValue}</Placeholder>
-      </CurrencyResult>
-    )
-}
