@@ -214,21 +214,21 @@ export const CustomContainer = styled.div`
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<StyleProps>`
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
   color: ${(props) => props.theme.colors.primary};
   font-size: 16px;
   width: 300px;
   height: 56px;
-  background: #FFFFFF 0 0 no-repeat padding-box;
   box-shadow: 0 3px 6px #00000029;
   border: 0;
-  border-bottom: 2px solid ${(props) => props.theme.colors.primary};
-  
+  color: ${(props): any => (props.errors.amount?.type === "required" ? 'red' : 'black')};
+  border-bottom: 2px solid ${(props) => 
+          (props.errors.amount?.type === "required" ? 'red' : props.theme.colors.primary)};
   &:focus {
     outline: none;
     border: 0;
-    border-bottom: 5px solid ${(props) => props.theme.colors.secondary};
+    border-bottom: 5px solid ${(props) => (props.errors.amount?.type === "required" ? 'red' : props.theme.colors.secondary)};
   }
   
   ::-webkit-inner-spin-button {
@@ -328,7 +328,12 @@ export const Placeholder = styled.span`
   }
 `;
 
-export const PlaceholderForInput = styled.span`
+interface StyleProps {
+  errors?: any;
+}
+
+export const PlaceholderForInput = styled.span<StyleProps>`
+  color: ${(props): any => (props.errors.amount?.type === "required" ? 'red' : 'black')};
   opacity: 0.6;
   position: absolute;
   top: 17px;
@@ -345,6 +350,11 @@ export const PlaceholderForInput = styled.span`
     top: 20px;
     right: 10%;
   }
+`;
+
+export const ErrorField = styled.span<StyleProps>`
+  color: ${(props): any => (props.errors.amount?.type === "required" ? 'red' : 'red')};
+  font-size: 10px;
 `;
 
 

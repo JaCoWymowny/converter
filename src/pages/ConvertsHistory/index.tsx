@@ -1,6 +1,13 @@
 import React, { FC, Key } from "react";
+
 import { HistoryRecords } from "../../interfaces/dbData";
-import {Container, TableWrapper, Close,RightArrow } from "./styles";
+
+import {
+  Container,
+  TableWrapper,
+  Close,
+  RightArrow
+} from "./styles";
 
 interface Props {
   historyRecords: HistoryRecords[]
@@ -45,7 +52,6 @@ const ConvertsHistory:FC<Props> = ({historyRecords, historyDataDelete}) => {
           </tbody>
         </table>
       </TableWrapper>
-
     </Container>
   )
 }

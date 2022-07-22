@@ -1,13 +1,20 @@
+import { useEffect, useState } from "react";
 import {
   Route,
   Routes
 } from "react-router-dom";
-import Converter from "../../pages/Converter";
-import ConvertsHistory from "../../pages/ConvertsHistory";
-import { useEffect, useState } from "react";
+
 import { HistoryRecords } from "../../interfaces/dbData";
 import { getDataFromLocalStorage } from "../../services/getDataFromLocalStorage";
-import { BackgroundContainerWrapper, FirstLinkContainerWrapper, ContainerWrapper } from "./styles";
+
+import Converter from "../../pages/Converter";
+import ConvertsHistory from "../../pages/ConvertsHistory";
+
+import {
+  BackgroundContainerWrapper,
+  FirstLinkContainerWrapper,
+  ContainerWrapper
+} from "./styles";
 
 const Layout = () => {
   const [historyRecords, setHistoryRecords] = useState<HistoryRecords[]>(getDataFromLocalStorage());

@@ -1,13 +1,15 @@
 import React, { FC, Key, useEffect, useState } from "react";
+import { useForm } from 'react-hook-form';
+
 import { ExchangeFormData } from "../../interfaces/dbData";
-import { useForm, SubmitHandler } from 'react-hook-form';
+
 import { useLocation, useNavigate } from "react-router-dom";
-import useListOfCurrency from "../../hooks/useListOfCurrency";
 import { currencyResultHandler } from "../../helpers/addCurrencyAsPlaceholder";
 import useExchangeCurrency from "../../hooks/useExchangeCurrency";
+import Modal from "../Modal";
+
 import {
   Arrow,
-  ErrorMessage,
   FormWrapper,
   Form,
   FieldWrapper,
@@ -23,90 +25,62 @@ import {
   ButtonsWrapper,
   PlaceholderForInput,
   ConvertButton,
-  HistoryButton, SelectFormField
+  HistoryButton,
+  SelectFormField,
+  ErrorField, ErrorMessage
 } from "./styles";
-import Modal from "../Modal";
-import { validateForm } from "../../helpers/validateForm";
 
 interface Props {
   addFormData: (submittedCurrencyData: ExchangeFormData | null, dataFromRequest: number | null, date: string) => void
+  currencyList: string[]
 }
 
-const ConverterForm: FC<Props> = ({ addFormData }) => {
-  const [showModal, setShowModal] = useState(false);
-  const [formError, setFormError] = useState<boolean | undefined>(false);
-  const [errorQuery, setErrorQuery] = useState<any>();
+const ConverterForm: FC<Props> = ({ addFormData, currencyList }) => {
   const today = new Date().toISOString().split("T")[0];
+  const [date] = useState<string>(today);
+  const [showModal, setShowModal] = useState(false);
+
   const [chosenCurrencyAmountValue, setChosenCurrencyAmountValue] = useState('');
   const [chosenCurrencyResultValue, setChosenCurrencyResultValue] = useState('');
   const [currencyResult, setCurrencyResult] = useState(0);
-  const [date] = useState<string>(today);
   const [submittedData, setSubmittedData] = useState<ExchangeFormData | null>(null);
-  const [dataFromRequest, setDataFromRequest] = useState<number | null>(null);
   const [locationText, setLocationText] = useState("Pokaż Historię");
+  const currencyResultValue = currencyResultHandler(currencyResult, chosenCurrencyResultValue);
 
   const location = useLocation();
   const navigate = useNavigate();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<ExchangeFormData>({
+
+  const { register, handleSubmit, formState: { errors } } = useForm<ExchangeFormData>({
     mode: 'onChange'
   });
-  const { isLoading, refetch, isError, error } = useExchangeCurrency(submittedData)
-
-  const {
-    currencyList,
-    isDataLoading,
-    currencyOnLoad,
-    isQueryError,
-    queryError
-  } = useListOfCurrency();
+  const { isLoading, dataFromRequest, setDataFromRequest, isError, error } = useExchangeCurrency(submittedData)
 
   useEffect(() => {
-    if (!currencyList && !isDataLoading) {
-      currencyOnLoad()
+    if (isError) {
+      setShowModal(true)
     }
-  }, [currencyList, isDataLoading, currencyOnLoad])
-
-  const currencyResultValue = currencyResultHandler(currencyResult, chosenCurrencyResultValue);
+  }, [isError, error])
 
   useEffect(() => {
-    if (submittedData) {
-      refetch().then((data) => setDataFromRequest(data.data.data.conversion_result.toFixed(2)))
-    }
     if (location.pathname === '/ConverterWithHistory') {
       setLocationText('Ukryj Historię')
     }
-  }, [submittedData, refetch, location.pathname])
+  }, [location.pathname])
 
   useEffect(() => {
     if (dataFromRequest) {
       addFormData(submittedData, dataFromRequest, date)
-      setSubmittedData(null)
       setCurrencyResult(dataFromRequest);
+      setSubmittedData(null)
       setDataFromRequest(null)
     }
-  }, [dataFromRequest, date, addFormData, submittedData])
+  }, [dataFromRequest, date, addFormData, submittedData, setDataFromRequest])
+
   const onSubmit = (formValues: ExchangeFormData) => {
-    const validate = validateForm(chosenCurrencyAmountValue, chosenCurrencyResultValue);
-    setFormError(validate);
-    if (validate) {
-      setShowModal(true);
-      reset();
-      setFormError(false);
-      return
-    } else {
-      const formData = {
-        ...formValues
-      };
-      setSubmittedData(formData);
-      reset();
-    }
-    setFormError(false);
-    if (isError || isQueryError) {
-      setErrorQuery(error?.message || queryError?.message);
-    }
-    setErrorQuery(null);
-    setChosenCurrencyAmountValue('');
-    setChosenCurrencyResultValue('');
+    const formData = {
+      ...formValues
+    };
+    setSubmittedData(formData);
   };
 
   const locationHandler = () => {
@@ -119,50 +93,37 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
     }
   }
 
-  const onSubmitError: SubmitHandler<any> = (data) => {
-    if (errors) {
-      setShowModal(true);
-      setFormError(true);
-    } else {
-      setFormError(false);
-    }
-
-  };
-
   const handleOptions = () => {
-    if (!isDataLoading && currencyList) {
-      const allData = currencyList?.data.supported_codes;
-      const code = allData.map((e: string) => e[0])
-      return code.map((item: string, index: Key) => {
-        return (
-          <option key={index} value={item}>{item}</option>
-        )
-      })
-    }
+    const code = currencyList.map((e: string) => e[0])
+    return code.map((item: string, index: Key) => {
+      return (
+        <option key={index} value={item}>{item}</option>
+      )
+    })
   }
 
   return (
     <>
-      <Modal show={showModal} onClose={() => setShowModal(false)}>
-        {formError &&
-          <ErrorMessage>Pole "kwota" nie może być puste i/lub waluty nie mogą być takie same.</ErrorMessage>}
-        {errorQuery && <ErrorMessage>{errorQuery}</ErrorMessage>}
+      <Modal show={showModal} onClose={() => {
+        setShowModal(false)
+      }}>
+        <ErrorMessage>{error?.message}</ErrorMessage>
       </Modal>
       <FormWrapper>
-        <Form onSubmit={handleSubmit(onSubmit, onSubmitError)}>
+        <Form onSubmit={handleSubmit(onSubmit)}
+        >
           <FieldWrapper>
             <SelectWrapper>
               <SelectFormField>
                 <Label>
                   Przelicz z
                 </Label>
-                <Select
-                  {...register('exchangeFrom', { required: true })}
-                  onChange={(e) => setChosenCurrencyAmountValue(e.target.value)}
-                >
+                <Select {...register('exchangeFrom', { required: true })}
+                        onChange={(e) => setChosenCurrencyAmountValue(e.target.value)}>
                   <option value=""></option>
                   {handleOptions()}
                 </Select>
+                <ErrorField errors={errors}>{errors.exchangeFrom?.type === "required" && "Wybierz walutę"}</ErrorField>
               </SelectFormField>
               <FormArrowField>
                 <Arrow/>
@@ -172,13 +133,12 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
                 <Label>
                   Przelicz na
                 </Label>
-                <Select
-                  {...register('exchangeTo', { required: true })}
-                  onChange={(e) => setChosenCurrencyResultValue(e.target.value)}
-                >
+                <Select {...register('exchangeTo', { required: true })}
+                        onChange={(e) => setChosenCurrencyResultValue(e.target.value)}>
                   <option value=''></option>
                   {handleOptions()}
                 </Select>
+                <ErrorField errors={errors}>{errors.exchangeTo?.type === "required" && "Wybierz walutę"}</ErrorField>
               </SelectFormField>
             </SelectWrapper>
             <CustomFieldWrapper>
@@ -187,22 +147,23 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
                   Kwota
                 </Label>
                 <CustomContainer>
-                  <Input
-                    {...register("amount", { required: true })}
-                    id='amount'
-                    name='amount'
-                    type='number'
-                    placeholder="   Wpisz kwotę"
+                  <Input errors={errors}
+                         {...register("amount", { required: true })}
+                         id='amount'
+                         name='amount'
+                         type='number'
+                         placeholder="   Wpisz kwotę"
                   />
-                  <PlaceholderForInput>
+                  <PlaceholderForInput errors={errors}>
                     {chosenCurrencyAmountValue}
                   </PlaceholderForInput>
+                  <ErrorField
+                    errors={errors}>{errors.amount?.type === "required" && "Brak wartości do konwersji"}</ErrorField>
                 </CustomContainer>
               </FormField>
               <ResultWrapper>
-                {isLoading && <span>Checking..</span>}
-                {!isLoading && <span className="text-field">Wynik</span>}
-                {!isLoading && currencyResultValue}
+                <span className="text-field">Wynik</span>
+                {currencyResultValue}
               </ResultWrapper>
             </CustomFieldWrapper>
           </FieldWrapper>
@@ -213,7 +174,7 @@ const ConverterForm: FC<Props> = ({ addFormData }) => {
               <p>{locationText}</p>
             </HistoryButton>
             <ConvertButton type="submit">
-              Konwertuj
+              {isLoading ? "x" : "Konwertuj"}
             </ConvertButton>
           </ButtonsWrapper>
         </Form>
