@@ -1,18 +1,22 @@
 import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
+import { useState } from "react";
 
 const useListOfCurrency = () => {
-  const {isLoading, data, refetch, isError, error} = useQuery<any , AxiosError>(`all-currency`, () => {
+  const [hasError, setHasError] = useState(false)
+
+  const {isLoading, data, isError, error} = useQuery<any , AxiosError>(`all-currency`, () => {
     return axios.get('https://v6.exchangerate-api.com/v6/24c28d3a1ae161c26190a228/codes')
   }, {
-    enabled: false
+    staleTime: 120000,
+    enabled: !hasError, onError: (error) => setHasError(true)
   })
-  const currencyOnLoad = refetch;
   const isDataLoading = isLoading;
-  const currencyList = data;
+  const currencyList = data?.data.supported_codes;
   const isQueryError = isError;
   const queryError = error;
-  return {isDataLoading, currencyList, currencyOnLoad, isQueryError, queryError}
+
+  return {isDataLoading, currencyList, isQueryError, queryError, setHasError}
 }
 
 export default useListOfCurrency;
