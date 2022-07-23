@@ -1,9 +1,9 @@
 import React, { FC, Key, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 
 import { ExchangeFormData } from "../../interfaces/dbData";
 
-import { useLocation, useNavigate } from "react-router-dom";
 import { currencyResultHandler } from "../../helpers/addCurrencyAsPlaceholder";
 import useExchangeCurrency from "../../hooks/useExchangeCurrency";
 import Modal from "../Modal";
@@ -44,7 +44,6 @@ const ConverterForm: FC<Props> = ({ addFormData, currencyList }) => {
   const [chosenCurrencyResultValue, setChosenCurrencyResultValue] = useState('');
   const [currencyResult, setCurrencyResult] = useState(0);
   const [submittedData, setSubmittedData] = useState<ExchangeFormData | null>(null);
-  const [locationText, setLocationText] = useState("Pokaż Historię");
   const currencyResultValue = currencyResultHandler(currencyResult, chosenCurrencyResultValue);
 
   const location = useLocation();
@@ -62,12 +61,6 @@ const ConverterForm: FC<Props> = ({ addFormData, currencyList }) => {
   }, [isError, error])
 
   useEffect(() => {
-    if (location.pathname === '/ConverterWithHistory') {
-      setLocationText('Ukryj Historię')
-    }
-  }, [location.pathname])
-
-  useEffect(() => {
     if (dataFromRequest) {
       addFormData(submittedData, dataFromRequest, date)
       setCurrencyResult(dataFromRequest);
@@ -82,16 +75,6 @@ const ConverterForm: FC<Props> = ({ addFormData, currencyList }) => {
     };
     setSubmittedData(formData);
   };
-
-  const locationHandler = () => {
-    if (location.pathname === '/ConverterWithHistory') {
-      setLocationText('Pokaż Historię')
-      navigate('/')
-    } else {
-      setLocationText('Ukryj Historię')
-      navigate('/ConverterWithHistory')
-    }
-  }
 
   const handleOptions = () => {
     const code = currencyList.map((e: string) => e[0])
@@ -168,11 +151,16 @@ const ConverterForm: FC<Props> = ({ addFormData, currencyList }) => {
             </CustomFieldWrapper>
           </FieldWrapper>
           <ButtonsWrapper>
-            <HistoryButton onClick={() => {
-              locationHandler()
-            }}>
-              <p>{locationText}</p>
-            </HistoryButton>
+            {
+              location.pathname === "/" ?
+                <HistoryButton onClick={() => navigate('/ConverterWithHistory')}>
+                  Pokaż Historię
+                </HistoryButton>
+                :
+                <HistoryButton onClick={() => navigate('/')}>
+                  Ukryj Historię
+                </HistoryButton>
+            }
             <ConvertButton type="submit">
               {isLoading ? "x" : "Konwertuj"}
             </ConvertButton>

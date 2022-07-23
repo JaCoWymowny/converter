@@ -1,20 +1,23 @@
-import { CurrencyResult, Placeholder } from "../components/ConverterForm/styles";
 import React from "react";
+import {
+  CurrencyResult,
+  Placeholder
+} from "../components/ConverterForm/styles";
 
 export const currencyResultHandler = (currencyResult: number, chosenCurrencyValue: string ) => {
-  if (currencyResult === 0) {
-    return (
+  return (
+    currencyResult === 0 ?
       <CurrencyResult>
         <Placeholder>Wynik</Placeholder>
-      <Placeholder className="placeholder-margin">{chosenCurrencyValue}</Placeholder>
+        <Placeholder className="placeholder-margin">{chosenCurrencyValue}</Placeholder>
       </CurrencyResult>
-    )
-  } else {
-    return (
+      :
       <CurrencyResult>
         <Placeholder>{currencyResult}</Placeholder>
         <Placeholder>{chosenCurrencyValue}</Placeholder>
       </CurrencyResult>
-    )
-  }
+  )
 }
+
+
+
