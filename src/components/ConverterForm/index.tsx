@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 
 import { ExchangeFormData } from "../../interfaces/dbData";
 
-import { currencyResultHandler } from "../../helpers/addCurrencyAsPlaceholder";
 import useExchangeCurrency from "../../hooks/useExchangeCurrency";
 import Modal from "../Modal";
 
@@ -12,39 +11,37 @@ import {
   Arrow,
   FormWrapper,
   Form,
-  FieldWrapper,
+  FormFieldWrapper,
   FormField,
-  FormArrowField,
-  SelectWrapper,
-  CustomFieldWrapper,
+  ExchangeArrowWrapper,
+  SelectsWrapper,
+  AmountAndResultWrapper,
   Select,
   Label,
-  CustomContainer,
+  InputAndResultField,
   Input,
-  ResultWrapper,
   ButtonsWrapper,
-  PlaceholderForInput,
-  ConvertButton,
+  ConvertSubmitButton,
   HistoryButton,
   SelectFormField,
-  ErrorField, ErrorMessage
+  ErrorField,
+  ErrorMessage
 } from "./styles";
 
 interface Props {
-  addFormData: (submittedCurrencyData: ExchangeFormData | null, dataFromRequest: number | null, date: string) => void
+  addFormDataToHistory: (submittedCurrencyData: ExchangeFormData | null, dataFromRequest: number | null, date: string) => void
   currencyList: string[]
 }
 
-const ConverterForm: FC<Props> = ({ addFormData, currencyList }) => {
+const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
   const today = new Date().toISOString().split("T")[0];
   const [date] = useState<string>(today);
   const [showModal, setShowModal] = useState(false);
 
-  const [chosenCurrencyAmountValue, setChosenCurrencyAmountValue] = useState('');
-  const [chosenCurrencyResultValue, setChosenCurrencyResultValue] = useState('');
-  const [currencyResult, setCurrencyResult] = useState(0);
-  const [submittedData, setSubmittedData] = useState<ExchangeFormData | null>(null);
-  const currencyResultValue = currencyResultHandler(currencyResult, chosenCurrencyResultValue);
+  const [shortCurrencyNamesAmountField, setShortCurrencyNamesAmountField] = useState('');
+  const [shortCurrencyNamesResultField, setShortCurrencyNamesResultField] = useState('');
+  const [currencyExchangeResult, setCurrencyExchangeResult] = useState(0);
+  const [submittedFormData, setSubmittedFormData] = useState<ExchangeFormData | null>(null);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -52,7 +49,7 @@ const ConverterForm: FC<Props> = ({ addFormData, currencyList }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<ExchangeFormData>({
     mode: 'onChange'
   });
-  const { isLoading, dataFromRequest, setDataFromRequest, isError, error } = useExchangeCurrency(submittedData)
+  const { isLoading, dataFromRequest, setDataFromRequest, isError, error } = useExchangeCurrency(submittedFormData)
 
   useEffect(() => {
     if (isError) {
@@ -62,23 +59,23 @@ const ConverterForm: FC<Props> = ({ addFormData, currencyList }) => {
 
   useEffect(() => {
     if (dataFromRequest) {
-      addFormData(submittedData, dataFromRequest, date)
-      setCurrencyResult(dataFromRequest);
-      setSubmittedData(null)
+      addFormDataToHistory(submittedFormData, dataFromRequest, date)
+      setCurrencyExchangeResult(dataFromRequest);
+      setSubmittedFormData(null)
       setDataFromRequest(null)
     }
-  }, [dataFromRequest, date, addFormData, submittedData, setDataFromRequest])
+  }, [dataFromRequest, date, addFormDataToHistory, submittedFormData, setDataFromRequest])
 
   const onSubmit = (formValues: ExchangeFormData) => {
     const formData = {
       ...formValues
     };
-    setSubmittedData(formData);
+    setSubmittedFormData(formData);
   };
 
   const handleOptions = () => {
-    const code = currencyList.map((e: string) => e[0])
-    return code.map((item: string, index: Key) => {
+    const shortCurrencyCode = currencyList.map((element: string) => element[0])
+    return shortCurrencyCode.map((item: string, index: Key) => {
       return (
         <option key={index} value={item}>{item}</option>
       )
@@ -92,64 +89,81 @@ const ConverterForm: FC<Props> = ({ addFormData, currencyList }) => {
       }}>
         <ErrorMessage>{error?.message}</ErrorMessage>
       </Modal>
+
       <FormWrapper>
-        <Form onSubmit={handleSubmit(onSubmit)}
-        >
-          <FieldWrapper>
-            <SelectWrapper>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+
+          <FormFieldWrapper>
+            <SelectsWrapper>
               <SelectFormField>
-                <Label>
-                  Przelicz z
-                </Label>
-                <Select {...register('exchangeFrom', { required: true })}
-                        onChange={(e) => setChosenCurrencyAmountValue(e.target.value)}>
-                  <option value=""></option>
-                  {handleOptions()}
-                </Select>
+                <div className="select-container">
+                  <Label>
+                    Przelicz z
+                  </Label>
+                  <Select {...register('exchangeFrom', { required: true })}
+                          onChange={(e) => setShortCurrencyNamesAmountField(e.target.value)}>
+                    <option value=""></option>
+                    {handleOptions()}
+                  </Select>
+                </div>
                 <ErrorField errors={errors}>{errors.exchangeFrom?.type === "required" && "Wybierz walutę"}</ErrorField>
               </SelectFormField>
-              <FormArrowField>
+
+              <ExchangeArrowWrapper>
                 <Arrow/>
-              </FormArrowField>
+              </ExchangeArrowWrapper>
 
               <SelectFormField>
+                <div className="select-container">
                 <Label>
                   Przelicz na
                 </Label>
                 <Select {...register('exchangeTo', { required: true })}
-                        onChange={(e) => setChosenCurrencyResultValue(e.target.value)}>
+                        onChange={(e) => setShortCurrencyNamesResultField(e.target.value)}>
                   <option value=''></option>
                   {handleOptions()}
                 </Select>
+                </div>
                 <ErrorField errors={errors}>{errors.exchangeTo?.type === "required" && "Wybierz walutę"}</ErrorField>
               </SelectFormField>
-            </SelectWrapper>
-            <CustomFieldWrapper>
+            </SelectsWrapper>
+
+            <AmountAndResultWrapper>
               <FormField>
+                <div className="amount-container">
                 <Label>
                   Kwota
                 </Label>
-                <CustomContainer>
-                  <Input errors={errors}
-                         {...register("amount", { required: true })}
-                         id='amount'
-                         name='amount'
-                         type='number'
-                         placeholder="   Wpisz kwotę"
-                  />
-                  <PlaceholderForInput errors={errors}>
-                    {chosenCurrencyAmountValue}
-                  </PlaceholderForInput>
-                  <ErrorField
-                    errors={errors}>{errors.amount?.type === "required" && "Brak wartości do konwersji"}</ErrorField>
-                </CustomContainer>
+                <InputAndResultField errors={errors}>
+                  <label>
+                    <span>{shortCurrencyNamesAmountField}</span>
+                    <Input errors={errors}
+                           {...register("amount", { required: true })}
+                           id='amount'
+                           name='amount'
+                           type='number'
+                           placeholder="Wpisz kwotę "
+                    />
+                  </label>
+                </InputAndResultField>
+                </div>
+                <ErrorField className="specific-width" errors={errors}>{errors.amount?.type === "required" && "Brak wartości do konwersji"}</ErrorField>
               </FormField>
-              <ResultWrapper>
-                <span className="text-field">Wynik</span>
-                {currencyResultValue}
-              </ResultWrapper>
-            </CustomFieldWrapper>
-          </FieldWrapper>
+
+              <FormField className="result-container">
+                <Label>
+                  Wynik
+                </Label>
+                <InputAndResultField errors={errors}>
+                  <div className='result'>
+                    <span className="result-currency">{shortCurrencyNamesResultField}</span>
+                    <span className="result-amount">{currencyExchangeResult}</span>
+                  </div>
+                </InputAndResultField>
+              </FormField>
+            </AmountAndResultWrapper>
+          </FormFieldWrapper>
+
           <ButtonsWrapper>
             {
               location.pathname === "/" ?
@@ -161,9 +175,11 @@ const ConverterForm: FC<Props> = ({ addFormData, currencyList }) => {
                   Ukryj Historię
                 </HistoryButton>
             }
-            <ConvertButton type="submit">
-              {isLoading ? "x" : "Konwertuj"}
-            </ConvertButton>
+            <ConvertSubmitButton type="submit"
+                                 disabled={isLoading}
+            >
+              Konwertuj
+            </ConvertSubmitButton>
           </ButtonsWrapper>
         </Form>
       </FormWrapper>

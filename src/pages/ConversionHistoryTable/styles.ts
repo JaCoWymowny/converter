@@ -3,27 +3,13 @@ import close from "../../images/close.svg";
 import rightArrow from "../../images/right-arrow.svg";
 
 export const Container = styled.div`
-  max-width: 1200px;
-  color: black;
-  display: flex;
-  justify-content: center;
-  background: white;
-  border-bottom-left-radius: 33px;
-  border-bottom-right-radius: 33px;
-  
-  @media (min-width: 1900px) {
-    border-radius: unset;
-  }
-  @media (max-width: 915px) {
-    max-width: 900px;
-  }
-  @media (max-width: 768px) {
-    max-width: 460px;
-  }
+  max-width: 1100px;
+  margin: auto;
 `;
 
 export const TableWrapper = styled.div`
   width: 100%;
+  background-color: white;
   
   @media (max-width: 768px) {
     width: 250px;
@@ -75,7 +61,7 @@ export const TableWrapper = styled.div`
     
   .first-thead-cell {
     padding-left: 20px;
-    width: 23%;
+    width: 24%;
     text-align: left;
   }
 
@@ -89,7 +75,7 @@ export const TableWrapper = styled.div`
   }
 
   .third-thead-cell {
-    width: 26%;
+    width: 25%;
     text-align: right;
     
     @media (max-width: 768px) {
@@ -98,8 +84,7 @@ export const TableWrapper = styled.div`
   }
   
   .fourth-thead-cell {
-    width: 23%;
-
+    width: 22.5%;
     @media (max-width: 768px) {
       width: 13%;
     }
@@ -108,7 +93,7 @@ export const TableWrapper = styled.div`
   .fifth-thead-cell {
     width: 18%;
     text-align: right;
-    padding-right: 16px;
+    padding-right: 20px;
 
     @media (max-width: 768px) {
       padding-right: 5px;
@@ -163,7 +148,6 @@ export const TableWrapper = styled.div`
   .fourth-tbody-cell {
     width: 22%;
     text-align: right;
-    padding-left: 120px;
 
     @media (max-width: 1100px) {
       padding-left: 70px;
@@ -203,12 +187,13 @@ export const Close = styled.div`
 `;
 
 export const RightArrow = styled.div`
+  content: "";
+  position: absolute;
   width: 24px;
   height: 24px;
   background-image: url(${rightArrow});
   background-repeat: no-repeat;
   background-size: 100%;
-  top: 50%;
-  bottom: 50%;
-  margin: auto 0;
+  top: 25%;
+  right: 20%;
 `;

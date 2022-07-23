@@ -10,13 +10,13 @@ import {
   ContainerWrapper,
   Title
 } from "./styles";
-
+import LargeSpinner from "../../common/LargeSpinner";
 
 interface Props {
-  historyDataHandler: (newHistoryItem: HistoryRecords) => void
+  historyRecordDataHandler: (newHistoryItem: HistoryRecords) => void
 }
 
-const ConverterPage: FC<Props> = ({ historyDataHandler }) => {
+const ConverterPageWithForm: FC<Props> = ({ historyRecordDataHandler }) => {
   const [showModal, setShowModal] = useState(false);
 
   const {
@@ -24,7 +24,6 @@ const ConverterPage: FC<Props> = ({ historyDataHandler }) => {
     isDataLoading,
     isQueryError,
     queryError,
-    setHasError,
   } = useListOfCurrency();
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const ConverterPage: FC<Props> = ({ historyDataHandler }) => {
     }
   }, [isQueryError])
 
-  const addFormData = (
+  const addFormDataToHistory = (
     submittedCurrencyData: ExchangeFormData | null,
     conversionResult: number | null,
     date: string) => {
@@ -44,21 +43,25 @@ const ConverterPage: FC<Props> = ({ historyDataHandler }) => {
       conversionResult: conversionResult,
       date: date
     }
-    historyDataHandler(newHistoryRecord)
+    historyRecordDataHandler(newHistoryRecord)
   }
 
   return (
     <ContainerWrapper>
       <Modal show={showModal} onClose={() => {
         setShowModal(false)
-        setHasError(false);
       }}>
         <ErrorMessage>{queryError?.message}</ErrorMessage>
       </Modal>
       <Title>Konwerter Walut</Title>
-      {(!isDataLoading && currencyList) && <ConverterForm addFormData={addFormData} currencyList={currencyList}/>}
+      {
+        (!isDataLoading && currencyList) ?
+        <ConverterForm addFormDataToHistory={addFormDataToHistory} currencyList={currencyList}/>
+          :
+        <LargeSpinner />
+      }
     </ContainerWrapper>
   )
 }
 
-export default ConverterPage;
+export default ConverterPageWithForm;
