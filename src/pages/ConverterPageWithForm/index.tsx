@@ -17,18 +17,19 @@ interface Props {
 }
 
 const ConverterPageWithForm: FC<Props> = ({ historyRecordDataHandler }) => {
-  const [showModal, setShowModal] = useState(false);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   const {
     currencyList,
     isDataLoading,
     isQueryError,
     queryError,
+    isFetching
   } = useListOfCurrency();
 
   useEffect(() => {
     if (isQueryError) {
-      setShowModal(true)
+      setIsErrorModalOpen(true)
     }
   }, [isQueryError])
 
@@ -48,18 +49,17 @@ const ConverterPageWithForm: FC<Props> = ({ historyRecordDataHandler }) => {
 
   return (
     <ContainerWrapper>
-      <Modal show={showModal} onClose={() => {
-        setShowModal(false)
+      <Modal show={isErrorModalOpen} onClose={() => {
+        setIsErrorModalOpen(false)
       }}>
         <ErrorMessage>{queryError?.message}</ErrorMessage>
       </Modal>
       <Title>Konwerter Walut</Title>
       {
-        (!isDataLoading && currencyList) ?
+        (!isDataLoading && currencyList) &&
         <ConverterForm addFormDataToHistory={addFormDataToHistory} currencyList={currencyList}/>
-          :
-        <LargeSpinner />
       }
+      {isFetching && <LargeSpinner />}
     </ContainerWrapper>
   )
 }

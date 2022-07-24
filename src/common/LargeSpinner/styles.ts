@@ -14,7 +14,7 @@ const SpinnerContainer = styled.div`
   display: inline-block;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 48%;
   width: 80px;
   height: 80px;
 

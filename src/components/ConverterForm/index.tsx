@@ -27,6 +27,7 @@ import {
   ErrorField,
   ErrorMessage
 } from "./styles";
+import { currencyValidation, exchangeFromValidation, exchangeToValidation } from "./validation";
 
 interface Props {
   addFormDataToHistory: (submittedCurrencyData: ExchangeFormData | null, dataFromRequest: number | null, date: string) => void
@@ -36,7 +37,7 @@ interface Props {
 const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
   const today = new Date().toISOString().split("T")[0];
   const [date] = useState<string>(today);
-  const [showModal, setShowModal] = useState(false);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   const [shortCurrencyNamesAmountField, setShortCurrencyNamesAmountField] = useState('');
   const [shortCurrencyNamesResultField, setShortCurrencyNamesResultField] = useState('');
@@ -46,14 +47,14 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<ExchangeFormData>({
+  const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm<ExchangeFormData>({
     mode: 'onChange'
   });
   const { isLoading, dataFromRequest, setDataFromRequest, isError, error } = useExchangeCurrency(submittedFormData)
 
   useEffect(() => {
     if (isError) {
-      setShowModal(true)
+      setIsErrorModalOpen(true)// isErModal
     }
   }, [isError, error])
 
@@ -84,8 +85,8 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
 
   return (
     <>
-      <Modal show={showModal} onClose={() => {
-        setShowModal(false)
+      <Modal show={isErrorModalOpen} onClose={() => {
+        setIsErrorModalOpen(false)
       }}>
         <ErrorMessage>{error?.message}</ErrorMessage>
       </Modal>
@@ -100,13 +101,16 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
                   <Label>
                     Przelicz z
                   </Label>
-                  <Select {...register('exchangeFrom', { required: true })}
+                  <Select {...register('exchangeFrom', {
+                    ...exchangeFromValidation
+                  })}
                           onChange={(e) => setShortCurrencyNamesAmountField(e.target.value)}>
                     <option value=""></option>
                     {handleOptions()}
                   </Select>
                 </div>
-                <ErrorField errors={errors}>{errors.exchangeFrom?.type === "required" && "Wybierz walutę"}</ErrorField>
+                {!shortCurrencyNamesAmountField &&
+                  <ErrorField errors={errors}>{errors.exchangeFrom?.message}</ErrorField>}
               </SelectFormField>
 
               <ExchangeArrowWrapper>
@@ -115,39 +119,44 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
 
               <SelectFormField>
                 <div className="select-container">
-                <Label>
-                  Przelicz na
-                </Label>
-                <Select {...register('exchangeTo', { required: true })}
-                        onChange={(e) => setShortCurrencyNamesResultField(e.target.value)}>
-                  <option value=''></option>
-                  {handleOptions()}
-                </Select>
+                  <Label>
+                    Przelicz na
+                  </Label>
+                  <Select {...register('exchangeTo', {
+                    ...exchangeToValidation
+                  })}
+                          onChange={(e) => setShortCurrencyNamesResultField(e.target.value)}>
+                    <option value=''></option>
+                    {handleOptions()}
+                  </Select>
                 </div>
-                <ErrorField errors={errors}>{errors.exchangeTo?.type === "required" && "Wybierz walutę"}</ErrorField>
+                {!shortCurrencyNamesResultField &&
+                  <ErrorField errors={errors}>{errors.exchangeTo?.message}</ErrorField>}
               </SelectFormField>
             </SelectsWrapper>
 
             <AmountAndResultWrapper>
               <FormField>
                 <div className="amount-container">
-                <Label>
-                  Kwota
-                </Label>
-                <InputAndResultField errors={errors}>
-                  <label>
-                    <span>{shortCurrencyNamesAmountField}</span>
-                    <Input errors={errors}
-                           {...register("amount", { required: true })}
-                           id='amount'
-                           name='amount'
-                           type='number'
-                           placeholder="Wpisz kwotę "
-                    />
-                  </label>
-                </InputAndResultField>
+                  <Label>
+                    Kwota
+                  </Label>
+                  <InputAndResultField errors={errors}>
+                    <label>
+                      <span>{shortCurrencyNamesAmountField}</span>
+                      <Input errors={errors}
+                             {...register("amount", {
+                               ...currencyValidation
+                             })}
+                             id='amount'
+                             name='amount'
+                             type='text'
+                             placeholder="Wpisz kwotę "
+                      />
+                    </label>
+                  </InputAndResultField>
                 </div>
-                <ErrorField className="specific-width" errors={errors}>{errors.amount?.type === "required" && "Brak wartości do konwersji"}</ErrorField>
+                <ErrorField className="specific-width" errors={errors}>{errors.amount?.message}</ErrorField>
               </FormField>
 
               <FormField className="result-container">
@@ -176,7 +185,7 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
                 </HistoryButton>
             }
             <ConvertSubmitButton type="submit"
-                                 disabled={isLoading}
+                                 disabled={!isDirty || !isValid || isLoading}
             >
               Konwertuj
             </ConvertSubmitButton>

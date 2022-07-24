@@ -136,7 +136,7 @@ export const InputAndResultField = styled.div<StyleProps>`
     top: 0;
     padding-right: 10px;
     font-weight: normal;
-    color: ${(props) => (props.errors.amount?.type === "required" ? 'red' : props.theme.colors.primary)};
+    color: ${(props) => (props.errors.amount?.message? 'red' : props.theme.colors.primary)};
   }
   
   .result {
@@ -174,18 +174,18 @@ export const Input = styled.input<StyleProps>`
   height: 56px;
   box-shadow: 0 3px 6px #00000029;
   border: 0;
-  color: ${(props): any => (props.errors.amount?.type === "required" ? 'red' : 'black')};
+  color: ${(props): any => (props.errors.amount?.message ? 'red' : 'black')};
   border-bottom: 2px solid ${(props) => 
-          (props.errors.amount?.type === "required" ? 'red' : props.theme.colors.primary)};
+          (props.errors.amount?.message ? 'red' : props.theme.colors.primary)};
   &:focus {
     outline: none;
     border: 0;
-    border-bottom: 2px solid ${(props) => (props.errors.amount?.type === "required" ? 'red' : props.theme.colors.secondary)};
+    border-bottom: 2px solid ${(props) => (props.errors.amount?.message ? 'red' : props.theme.colors.secondary)};
   }
 
   ::-webkit-input-placeholder {
     padding: 0 15px;
-    color: ${(props) => (props.errors.amount?.type === "required" ? 'red' : props.theme.colors.primary)};
+    color: ${(props) => (props.errors.amount?.message ? 'red' : props.theme.colors.primary)};
   }
   
   ::-webkit-inner-spin-button {
@@ -199,7 +199,7 @@ export const Input = styled.input<StyleProps>`
 `;
 
 export const ErrorField = styled.span<StyleProps>`
-  color: ${(props): any => (props.errors.amount?.type === "required" ? 'red' : 'red')};
+  color: ${(props): any => (props.errors && 'red')};
   font-size: 10px;
   width: 150px;
 `;
