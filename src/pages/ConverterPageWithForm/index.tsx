@@ -10,30 +10,30 @@ import {
   ContainerWrapper,
   Title
 } from "./styles";
-
+import LargeSpinner from "../../common/LargeSpinner";
 
 interface Props {
-  historyDataHandler: (newHistoryItem: HistoryRecords) => void
+  historyRecordDataHandler: (newHistoryItem: HistoryRecords) => void
 }
 
-const ConverterPage: FC<Props> = ({ historyDataHandler }) => {
-  const [showModal, setShowModal] = useState(false);
+const ConverterPageWithForm: FC<Props> = ({ historyRecordDataHandler }) => {
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   const {
     currencyList,
     isDataLoading,
     isQueryError,
     queryError,
-    setHasError,
+    isFetching
   } = useListOfCurrency();
 
   useEffect(() => {
     if (isQueryError) {
-      setShowModal(true)
+      setIsErrorModalOpen(true)
     }
   }, [isQueryError])
 
-  const addFormData = (
+  const addFormDataToHistory = (
     submittedCurrencyData: ExchangeFormData | null,
     conversionResult: number | null,
     date: string) => {
@@ -44,21 +44,24 @@ const ConverterPage: FC<Props> = ({ historyDataHandler }) => {
       conversionResult: conversionResult,
       date: date
     }
-    historyDataHandler(newHistoryRecord)
+    historyRecordDataHandler(newHistoryRecord)
   }
 
   return (
     <ContainerWrapper>
-      <Modal show={showModal} onClose={() => {
-        setShowModal(false)
-        setHasError(false);
+      <Modal show={isErrorModalOpen} onClose={() => {
+        setIsErrorModalOpen(false)
       }}>
         <ErrorMessage>{queryError?.message}</ErrorMessage>
       </Modal>
       <Title>Konwerter Walut</Title>
-      {(!isDataLoading && currencyList) && <ConverterForm addFormData={addFormData} currencyList={currencyList}/>}
+      {
+        (!isDataLoading && currencyList) &&
+        <ConverterForm addFormDataToHistory={addFormDataToHistory} currencyList={currencyList}/>
+      }
+      {isFetching && <LargeSpinner />}
     </ContainerWrapper>
   )
 }
 
-export default ConverterPage;
+export default ConverterPageWithForm;

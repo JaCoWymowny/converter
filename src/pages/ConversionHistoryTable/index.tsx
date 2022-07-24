@@ -14,7 +14,7 @@ interface Props {
   historyDataDelete:(updatedRecords: HistoryRecords[]) => void
 }
 
-const ConvertsHistory:FC<Props> = ({historyRecords, historyDataDelete}) => {
+const ConversionHistoryTable:FC<Props> = ({historyRecords, historyDataDelete}) => {
   const handleDelete = (item: React.Key) => {
     const updatedRecords = historyRecords.filter((v, i) => i !== item)
     historyDataDelete(updatedRecords);
@@ -40,8 +40,8 @@ const ConvertsHistory:FC<Props> = ({historyRecords, historyDataDelete}) => {
         <table>
           <thead>
           <tr>
-            <th className="first-thead-cell thead-cell">Delete record</th>
-            <th className="second-thead-cell thead-cell">Date</th>
+            <th className="first-thead-cell thead-cell">Usuń rekord</th>
+            <th className="second-thead-cell thead-cell">Data</th>
             <th className="third-thead-cell thead-cell">Przed Konwersją</th>
             <th className="fourth-thead-cell thead-cell"></th>
             <th className="fifth-thead-cell thead-cell">Po konwersji</th>
@@ -56,4 +56,4 @@ const ConvertsHistory:FC<Props> = ({historyRecords, historyDataDelete}) => {
   )
 }
 
-export default ConvertsHistory;
+export default ConversionHistoryTable;

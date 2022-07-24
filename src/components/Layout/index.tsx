@@ -7,13 +7,13 @@ import {
 import { HistoryRecords } from "../../interfaces/dbData";
 import { getDataFromLocalStorage } from "../../services/getDataFromLocalStorage";
 
-import Converter from "../../pages/Converter";
-import ConvertsHistory from "../../pages/ConvertsHistory";
+import Converter from "../../pages/ConverterPageWithForm";
+import ConversionHistoryTable from "../../pages/ConversionHistoryTable";
 
 import {
   BackgroundContainerWrapper,
-  FirstLinkContainerWrapper,
-  ContainerWrapper
+  FirstRouteWrapper,
+  HistoryRouterWrapper
 } from "./styles";
 
 const Layout = () => {
@@ -23,7 +23,7 @@ const Layout = () => {
     localStorage.setItem('HistoryRecords', JSON.stringify(historyRecords));
   }, [historyRecords]);
 
-  const historyDataHandler = (newHistoryItem: HistoryRecords) => {
+  const historyRecordDataHandler = (newHistoryItem: HistoryRecords) => {
     setHistoryRecords([...historyRecords, newHistoryItem])
   }
 
@@ -35,19 +35,16 @@ const Layout = () => {
     <BackgroundContainerWrapper>
       <Routes>
         <Route path="/" element={
-          <FirstLinkContainerWrapper>
-            <Converter historyDataHandler={historyDataHandler}/>
-          </FirstLinkContainerWrapper>
+          <FirstRouteWrapper>
+            <Converter historyRecordDataHandler={historyRecordDataHandler}/>
+          </FirstRouteWrapper>
         }
         />
         <Route path="/ConverterWithHistory" element={
-          <>
-            <ContainerWrapper>
-              <Converter historyDataHandler={historyDataHandler}/>
-              <ConvertsHistory historyRecords={historyRecords} historyDataDelete={historyDataDelete}/>
-            </ContainerWrapper>
-
-          </>
+          <HistoryRouterWrapper>
+            <Converter historyRecordDataHandler={historyRecordDataHandler}/>
+            <ConversionHistoryTable historyRecords={historyRecords} historyDataDelete={historyDataDelete}/>
+          </HistoryRouterWrapper>
         }
         />
       </Routes>

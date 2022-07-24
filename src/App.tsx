@@ -10,7 +10,6 @@ const queryClient =  new QueryClient();
 const App:FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
-
         <Router>
           <Layout />
         </Router>
