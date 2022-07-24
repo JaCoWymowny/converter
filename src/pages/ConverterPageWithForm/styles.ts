@@ -5,6 +5,12 @@ export const Title = styled.div`
   margin-bottom: 20px;
   font-size: 35px;
   margin-top: 75px;
+
+  @media (max-width: 920px) {
+    margin-top: 40px;
+    margin-bottom: 12px;
+    font-size: 28px;
+  }
 `;
 
 export const ContainerWrapper = styled.div`
@@ -22,4 +28,9 @@ export const ContainerWrapper = styled.div`
   backdrop-filter: blur(36px);
   -webkit-backdrop-filter: blur(36px);
   font-weight: 700;
+
+  @media (max-width: 920px) {
+    height: 400px;
+    padding: 0 30px;
+  }
 `;

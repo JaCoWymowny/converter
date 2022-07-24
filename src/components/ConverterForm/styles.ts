@@ -20,6 +20,10 @@ export const FormWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 60px;
+
+  @media (max-width: 920px) {
+    margin-top: 40px;
+  }
 `;
 
 export const Form = styled.form`
@@ -43,6 +47,15 @@ export const SelectsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 1300px) {
+    width: 300px;
+  }
+  
+  @media (max-width: 920px) {
+    width: 280px;
+  }
+  
 `;
 
 export const AmountAndResultWrapper = styled.div`
@@ -54,6 +67,14 @@ export const AmountAndResultWrapper = styled.div`
   
   .result-container {
     height: 86px;
+  }
+
+  @media (max-width: 1300px) {
+    width: 400px
+  }
+
+  @media (max-width: 920px) {
+    width: 320px;
   }
 `;
 
@@ -83,6 +104,10 @@ export const FormField = styled.div`
     height: 86px;
     justify-content: space-between;
   }
+  
+  .specific-width {
+    width: 160px;
+  }
 `;
 
 export const ExchangeArrowWrapper = styled.div`
@@ -90,11 +115,16 @@ export const ExchangeArrowWrapper = styled.div`
   height: 14px;
   top: 10%;
   position: relative;
+  
+  @media (max-width: 1300px) {
+    top: 4%;
+  }
 `;
 
 export const Arrow = styled.div`
   width: 18px;
   height: 14px;
+  position: absolute;
   background-image: url(${bidirectional});
   background-repeat: no-repeat;
   background-size: 125%;
@@ -118,11 +148,16 @@ export const Select = styled.select`
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
   color: ${(props) => props.theme.colors.primary};
   font-size: 16px;
+  
+  @media (max-width: 1300px) {
+    width: 115px;
+  }
 `;
 
 export const Label = styled.label`
  font-weight: 600;
   font-size: 16px;
+  width: 115px;
 `;
 
 export const InputAndResultField = styled.div<StyleProps>`
@@ -137,6 +172,11 @@ export const InputAndResultField = styled.div<StyleProps>`
     padding-right: 10px;
     font-weight: normal;
     color: ${(props) => (props.errors.amount?.message? 'red' : props.theme.colors.primary)};
+
+    @media (max-width: 920px) {
+      font-size: 12px;
+      top: 4px;
+    }
   }
   
   .result {
@@ -148,6 +188,14 @@ export const InputAndResultField = styled.div<StyleProps>`
     box-shadow: 0 3px 6px #00000029;
     border: 0;
     border-bottom: 2px solid ${(props) => props.theme.colors.primary};
+
+    @media (max-width: 1300px) {
+      width: 180px;
+    }
+
+    @media (max-width: 920px) {
+      width: 150px;
+    }
   }
 
   .result-currency {
@@ -157,6 +205,11 @@ export const InputAndResultField = styled.div<StyleProps>`
     padding-right: 10px;
     color: ${(props) => props.theme.colors.primary};
     font-weight: normal;
+
+    @media (max-width: 920px) {
+      font-size: 12px;
+      top: 35%;
+    }
   }
 
   .result-amount {
@@ -164,6 +217,10 @@ export const InputAndResultField = styled.div<StyleProps>`
     font-family: ${(props) => props.theme.fontFamily.primaryFont};
     font-size: 16px;
     color: ${(props): any => props.theme.colors.primary};
+
+    @media (max-width: 920px) {
+      font-size: 12px;
+    }
   }
 `;
 
@@ -172,9 +229,10 @@ export const Input = styled.input<StyleProps>`
   font-size: 16px;
   width: 300px;
   height: 56px;
+  padding-left: 10px;
   box-shadow: 0 3px 6px #00000029;
   border: 0;
-  color: ${(props): any => (props.errors.amount?.message ? 'red' : 'black')};
+  color: ${(props): any => (props.errors.amount?.message ? 'red' : props.theme.colors.primary)};
   border-bottom: 2px solid ${(props) => 
           (props.errors.amount?.message ? 'red' : props.theme.colors.primary)};
   &:focus {
@@ -186,6 +244,11 @@ export const Input = styled.input<StyleProps>`
   ::-webkit-input-placeholder {
     padding: 0 15px;
     color: ${(props) => (props.errors.amount?.message ? 'red' : props.theme.colors.primary)};
+
+    @media (max-width: 920px) {
+      padding: 0 5px;
+      font-size: 12px;
+    }
   }
   
   ::-webkit-inner-spin-button {
@@ -196,12 +259,24 @@ export const Input = styled.input<StyleProps>`
     -webkit-appearance: none;
     margin: 0;
   }
+  
+  @media (max-width: 1300px) {
+    width: 180px;
+  }
+
+  @media (max-width: 920px) {
+    width: 150px;
+  }
 `;
 
 export const ErrorField = styled.span<StyleProps>`
   color: ${(props): any => (props.errors && 'red')};
   font-size: 10px;
   width: 150px;
+  
+  @media (max-width: 1300px) {
+    width: 115px;
+  }
 `;
 
 export const ButtonsWrapper = styled.div`
@@ -232,6 +307,16 @@ export const ConvertSubmitButton = styled.button`
     background: ${(props) => props.theme.buttonColors.primaryDisabled};
     cursor: not-allowed;
   }
+
+  @media (max-width: 1300px) {
+    width: 140px;
+    height: 54px;
+  }
+
+  @media (max-width: 920px) {
+    width: 120px;
+    font-size: 14px;
+  }
 `;
 
 export const HistoryButton = styled.div`
@@ -253,6 +338,16 @@ export const HistoryButton = styled.div`
     background: ${(props) => props.theme.buttonColors.secondaryHover};
     box-shadow: 5px 5px 12px #98ADCD;
     color: ${(props) => props.theme.buttonColors.primaryHover};
+  }
+  
+  @media (max-width: 1300px) {
+    width: 170px;
+    height: 54px;
+  }
+
+  @media (max-width: 920px) {
+    width: 145px;
+    font-size: 14px;
   }
 `;
 

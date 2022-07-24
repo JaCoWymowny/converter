@@ -5,11 +5,27 @@ import rightArrow from "../../images/right-arrow.svg";
 export const Container = styled.div`
   max-width: 1100px;
   margin: auto;
+  display: flex;
+  justify-content: center;
+
+  //@media (max-width: 920px) {
+  //  padding-left: 10px;
+  //}
 `;
 
 export const TableWrapper = styled.div`
   width: 100%;
   background-color: white;
+  padding-left: 10px;
+  
+  @media (max-width: 1300px) {
+    width: 89%;
+  }
+  
+  @media (max-width: 920px) {
+    width: 95%;
+    padding-left: 18px;
+  }
   
   @media (max-width: 768px) {
     width: 250px;
@@ -22,11 +38,8 @@ export const TableWrapper = styled.div`
     border-collapse: collapse;
     color: ${(props) => props.theme.colors.primary};
     
-    @media (max-width: 1100px) {
+    @media (max-width: 1300px) {
       font-size: 12px;
-    }
-    @media (max-width: 915px) {
-      font-size: 10px;
     }
   }
   
@@ -60,14 +73,30 @@ export const TableWrapper = styled.div`
   //thead cell
     
   .first-thead-cell {
-    padding-left: 20px;
-    width: 24%;
+    padding-left: 15px;
+    width: 225px;
     text-align: left;
+
+    @media (max-width: 1300px) {
+      width: 232px;
+    }
+    
+    @media (max-width: 920px) {
+      width: 150px;
+    }
   }
 
   .second-thead-cell {
     text-align: left;
-    width: 17%;
+    width: 225px;
+    
+    @media (max-width: 1300px) {
+      width: 130px;
+    }
+    
+    @media (max-width: 920px) {
+      width: 133px;
+    }
 
     @media (max-width: 768px) {
       text-align: right;
@@ -75,8 +104,16 @@ export const TableWrapper = styled.div`
   }
 
   .third-thead-cell {
-    width: 25%;
+    width: 290px;
     text-align: right;
+
+    @media (max-width: 1300px) {
+      width: 183px;
+    }
+    
+    @media (max-width: 920px) {
+      width: 111px;
+    }
     
     @media (max-width: 768px) {
       margin-left: 15px;
@@ -84,19 +121,37 @@ export const TableWrapper = styled.div`
   }
   
   .fourth-thead-cell {
-    width: 22.5%;
+    width: 218px;
+
+    @media (max-width: 1300px) {
+      width: 177px;
+    }
+    
+    @media (max-width: 920px) {
+      
+    }
+    
     @media (max-width: 768px) {
       width: 13%;
     }
   }
   
   .fifth-thead-cell {
-    width: 18%;
+    width: 140px;
     text-align: right;
-    padding-right: 20px;
+    padding-right: 22px;
+    
+    @media (max-width: 1300px) {
+      width: 106px;
+      padding-right: 12px;
+    }
+    
+    @media (max-width: 920px) {
+      width: 125px;
+    }
 
     @media (max-width: 768px) {
-      padding-right: 5px;
+      
     }
   }
   // end of thead cell
@@ -113,9 +168,18 @@ export const TableWrapper = styled.div`
   }
   
   .first-tbody-cell {
-    width: 22%;
+    width: 200px;
     text-align: left;
     padding-left: 40px;
+
+    @media (max-width: 1300px) {
+      width: 182px;
+    }
+    
+    @media (max-width: 920px) {
+      width: 75px;
+      padding-left: 0;
+    }
     
     @media (max-width: 768px) {
       padding-left: 0;
@@ -126,8 +190,18 @@ export const TableWrapper = styled.div`
 
   .second-tbody-cell {
     text-align: left;
-    width: 22%;
+    width: 268px;
     padding-left: 30px;
+
+    @media (max-width: 1300px) {
+      width: 185px;
+    }
+    
+    @media (max-width: 920px) {
+      width: 75px;
+      padding-left: 5px;
+      text-align: right;
+    }
 
     @media (max-width: 768px) {
       padding-left: 0;
@@ -137,8 +211,16 @@ export const TableWrapper = styled.div`
   }
   
   .third-tbody-cell {
-    width: 26%;
+    width: 250px;
     text-align: right;
+
+    @media (max-width: 1300px) {
+      width: 145px;
+    }
+    
+    @media (max-width: 920px) {
+      width: 160px;
+    }
     
     @media (max-width: 768px) {
       width: 18%;
@@ -146,12 +228,17 @@ export const TableWrapper = styled.div`
   }
   
   .fourth-tbody-cell {
-    width: 22%;
+    width: 100px;
     text-align: right;
 
-    @media (max-width: 1100px) {
-      padding-left: 70px;
+    @media (max-width: 1300px) {
+      width: 80px;
     }
+    
+    @media (max-width: 920px) {
+      width: 70px;
+    }
+    
     @media (max-width: 768px) {
       padding-left: 10px;
       width: 15%;
@@ -159,18 +246,19 @@ export const TableWrapper = styled.div`
   }
   
   .fifth-tbody-cell {
-    width: 20%;
+    width: 240px;
     text-align: right;
-    padding-right: 16px;
-    font-size: 16px;
+    padding-right: 22px;
     font-weight: 600;
 
-    @media (max-width: 1100px) {
-      font-size: 12px;
+    @media (max-width: 1300px) {
+      width: 193px;
+      padding-right: 23px;
     }
     
-    @media (max-width: 915px) {
-      font-size: 10px;
+    @media (max-width: 920px) {
+      width: 200px;
+      padding-right: 12px;
     }
   }
 `
@@ -195,5 +283,13 @@ export const RightArrow = styled.div`
   background-repeat: no-repeat;
   background-size: 100%;
   top: 25%;
-  right: 20%;
+  right: 22%;
+  
+  @media (max-width: 1300px) {
+    right: 25%;
+  }
+
+  @media (max-width: 920px) {
+    right: 32%;
+  }
 `;

@@ -144,6 +144,7 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
                   <InputAndResultField errors={errors}>
                     <label>
                       <span>{shortCurrencyNamesAmountField}</span>
+
                       <Input errors={errors}
                              {...register("amount", {
                                ...currencyValidation
@@ -153,6 +154,7 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
                              type='text'
                              placeholder="Wpisz kwotę "
                       />
+
                     </label>
                   </InputAndResultField>
                 </div>
@@ -185,7 +187,8 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
                 </HistoryButton>
             }
             <ConvertSubmitButton type="submit"
-                                 disabled={!isDirty || !isValid || isLoading}
+                                 // disabled={!isDirty || !isValid || isLoading}
+                                 disabled={isLoading}
             >
               Konwertuj
             </ConvertSubmitButton>
