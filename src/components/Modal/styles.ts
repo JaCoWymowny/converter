@@ -19,7 +19,7 @@ export const StyledModal = styled.div`
   z-index: 102;
   background: white;
   border-left: 10px solid red;
-  
+
   @media (max-width: 1800px) {
     top: 60%;
     left: 40%;

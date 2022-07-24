@@ -54,7 +54,7 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
 
   useEffect(() => {
     if (isError) {
-      setIsErrorModalOpen(true)// isErModal
+      setIsErrorModalOpen(true)
     }
   }, [isError, error])
 

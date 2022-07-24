@@ -4,13 +4,14 @@ import React, { FC, useEffect, useState } from "react";
 import ConverterForm from "../../components/ConverterForm";
 import useListOfCurrency from "../../hooks/useListOfCurrency";
 import Modal from "../../components/Modal";
+import LargeSpinner from "../../common/LargeSpinner";
 
 import { ErrorMessage } from "../../components/ConverterForm/styles";
 import {
   ContainerWrapper,
   Title
 } from "./styles";
-import LargeSpinner from "../../common/LargeSpinner";
+
 
 interface Props {
   historyRecordDataHandler: (newHistoryItem: HistoryRecords) => void
@@ -59,7 +60,7 @@ const ConverterPageWithForm: FC<Props> = ({ historyRecordDataHandler }) => {
         (!isDataLoading && currencyList) &&
         <ConverterForm addFormDataToHistory={addFormDataToHistory} currencyList={currencyList}/>
       }
-      {isFetching && <LargeSpinner />}
+      {isFetching && <LargeSpinner/>}
     </ContainerWrapper>
   )
 }

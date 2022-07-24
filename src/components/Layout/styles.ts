@@ -38,17 +38,17 @@ export const FirstRouteWrapper = styled.div`
   height: 473px;
   color: ${(props) => props.theme.colors.primary};
   margin-top: 110px;
-  
+
   @media (max-width: 1300px) {
     width: 900px;
     height: 400px;
   }
-  
+
   @media (max-width: 920px) {
     width: 700px;
     height: 400px;
   }
-  
+
   @media (max-width: 768px) {
     width: 97%;
     margin-top: 20px;
@@ -64,12 +64,12 @@ export const HistoryRouterWrapper = styled.div`
   opacity: 1;
   backdrop-filter: blur(36px);
   -webkit-backdrop-filter: blur(36px);
-  
+
   @media (max-width: 1300px) {
     width: 900px;
     height: 700px;
   }
-  
+
   @media (max-width: 920px) {
     width: 700px;
     height: 660px;

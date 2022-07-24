@@ -24,14 +24,14 @@ export const FormWrapper = styled.div`
   @media (max-width: 920px) {
     margin-top: 40px;
   }
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
     margin-top: 5px;
     height: 290px;
   }
-  
+
 `;
 
 export const Form = styled.form`
@@ -46,7 +46,7 @@ export const FormFieldWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
@@ -64,7 +64,7 @@ export const SelectsWrapper = styled.div`
   @media (max-width: 1300px) {
     width: 300px;
   }
-  
+
   @media (max-width: 920px) {
     width: 280px;
   }
@@ -81,7 +81,7 @@ export const AmountAndResultWrapper = styled.div`
   max-width: 100%;
   display: flex;
   justify-content: space-between;
-  
+
   .result-container {
     height: 86px;
 
@@ -104,11 +104,11 @@ export const AmountAndResultWrapper = styled.div`
 `;
 
 export const SelectFormField = styled.div`
-   display: flex;
+  display: flex;
   flex-direction: column;
   height: 110px;
   justify-content: space-between;
-  
+
   .select-container {
     display: flex;
     flex-direction: column;
@@ -120,19 +120,19 @@ export const SelectFormField = styled.div`
       height: 80px;
     }
   }
-  
+
   @media (max-width: 768px) {
     height: 100px;
   }
 `;
 
 export const FormField = styled.div`
- display: flex;
- flex-direction: column;
- height: 110px;
+  display: flex;
+  flex-direction: column;
+  height: 110px;
   justify-content: space-between;
-  
-  .amount-container  {
+
+  .amount-container {
     display: flex;
     flex-direction: column;
     height: 86px;
@@ -142,11 +142,11 @@ export const FormField = styled.div`
       height: 80px;
     }
   }
-  
+
   .specific-width {
     width: 160px;
   }
-  
+
   @media (max-width: 768px) {
     height: 100px;
   }
@@ -157,7 +157,7 @@ export const ExchangeArrowWrapper = styled.div`
   height: 14px;
   top: 10%;
   position: relative;
-  
+
   @media (max-width: 1300px) {
     top: 4%;
   }
@@ -174,15 +174,15 @@ export const Arrow = styled.div`
 `;
 
 export const Select = styled.select`
-   width: 150px;
-   height: 56px;
-   box-shadow: 3px 3px 7px #C2CBD9;
-   border-radius: 5px;
-   opacity: 1;
-   outline: none;
-   border: none;
-   padding-left: 16px;
-   appearance: none;
+  width: 150px;
+  height: 56px;
+  box-shadow: 3px 3px 7px #C2CBD9;
+  border-radius: 5px;
+  opacity: 1;
+  outline: none;
+  border: none;
+  padding-left: 16px;
+  appearance: none;
   background-image: url(${arrow});
   background-repeat: no-repeat;
   background-position: right 1rem center;
@@ -190,7 +190,7 @@ export const Select = styled.select`
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
   color: ${(props) => props.theme.colors.primary};
   font-size: 16px;
-  
+
   @media (max-width: 1300px) {
     width: 115px;
   }
@@ -201,7 +201,7 @@ export const Select = styled.select`
 `;
 
 export const Label = styled.label`
- font-weight: 600;
+  font-weight: 600;
   font-size: 16px;
   width: 115px;
 
@@ -223,14 +223,14 @@ export const InputAndResultField = styled.div<StyleProps>`
     top: 0;
     padding-right: 10px;
     font-weight: normal;
-    color: ${(props) => (props.errors.amount?.message? 'red' : props.theme.colors.primary)};
+    color: ${(props) => (props.errors.amount?.message ? 'red' : props.theme.colors.primary)};
 
     @media (max-width: 920px) {
       font-size: 12px;
       top: 4px;
     }
   }
-  
+
   .result {
     position: relative;
     display: flex;
@@ -285,8 +285,9 @@ export const Input = styled.input<StyleProps>`
   box-shadow: 0 3px 6px #00000029;
   border: 0;
   color: ${(props): any => (props.errors.amount?.message ? 'red' : props.theme.colors.primary)};
-  border-bottom: 2px solid ${(props) => 
+  border-bottom: 2px solid ${(props) =>
           (props.errors.amount?.message ? 'red' : props.theme.colors.primary)};
+
   &:focus {
     outline: none;
     border: 0;
@@ -302,16 +303,17 @@ export const Input = styled.input<StyleProps>`
       font-size: 12px;
     }
   }
-  
+
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
+
   ::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-  
+
   @media (max-width: 1300px) {
     width: 180px;
   }
@@ -325,11 +327,11 @@ export const ErrorField = styled.span<StyleProps>`
   color: ${(props): any => (props.errors && 'red')};
   font-size: 10px;
   width: 150px;
-  
+
   @media (max-width: 1300px) {
     width: 115px;
   }
-  
+
   @media (max-width: 768px) {
     width: 150px;
     text-align: center;
@@ -360,7 +362,7 @@ export const ConvertSubmitButton = styled.button`
   font: normal normal 600 16px/22px Open Sans;
   letter-spacing: 0.8px;
   color: #FFFFFF;
-  
+
   &:hover {
     background: ${(props) => props.theme.buttonColors.primaryHover};
     box-shadow: 5px 5px 12px #98ADCD;
@@ -403,12 +405,13 @@ export const HistoryButton = styled.div`
   border-radius: 100px;
   border: none;
   color: ${(props) => props.theme.buttonColors.primaryDefault};
+
   &:hover {
     background: ${(props) => props.theme.buttonColors.secondaryHover};
     box-shadow: 5px 5px 12px #98ADCD;
     color: ${(props) => props.theme.buttonColors.primaryHover};
   }
-  
+
   @media (max-width: 1300px) {
     width: 170px;
     height: 50px;
