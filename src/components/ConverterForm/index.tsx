@@ -48,7 +48,7 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { register, handleSubmit, formState: { errors, isValid } } = useForm<ExchangeFormData>({
+  const { register, handleSubmit, formState: { errors } } = useForm<ExchangeFormData>({
     mode: 'onChange'
   });
 
