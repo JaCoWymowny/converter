@@ -9,7 +9,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const Modal: FC<Props> = ({show, onClose, children}) => {
+const Modal: FC<Props> = ({ show, onClose, children }) => {
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     setIsVisible(true)
@@ -22,10 +22,10 @@ const Modal: FC<Props> = ({show, onClose, children}) => {
 
   const modalFragment = show ? (
     <Fragment>
-      <ModalOverlay />
+      <ModalOverlay/>
       <StyledModal>
         <CloseButton onClick={handleClose}>
-          <img alt="close button" src={close_modal} />
+          <img alt="close button" src={close_modal}/>
         </CloseButton>
         <ModalContent>
           <ErrorMessage>Komunikat Błędu</ErrorMessage>
@@ -35,7 +35,7 @@ const Modal: FC<Props> = ({show, onClose, children}) => {
     </Fragment>
   ) : null;
 
-  if(isVisible) {
+  if (isVisible) {
     return createPortal(
       modalFragment,
       document.getElementById("modal-root")!

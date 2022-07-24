@@ -7,7 +7,7 @@ export const useExchangeCurrency = (submittedData: ExchangeFormData | null) => {
   const [dataFromRequest, setDataFromRequest] = useState<number | null>(null);
 
   const { isLoading, refetch, isError, error } = useQuery<any, AxiosError>('exchange', () => {
-    return axios.get(`https://v6.exchangerate-api.com/v6/24c28d3a1ae161c26190a228/pair/${submittedData?.exchangeFrom}/${submittedData?.exchangeTo}/${submittedData?.amount}`)
+    return axios.get(`https://v6.exchangerate-api.com/v6/${process.env.REACT_APP_API_KEY}/pair/${submittedData?.exchangeFrom}/${submittedData?.exchangeTo}/${submittedData?.amount}`)
   }, {
     enabled: false
   })

@@ -11,23 +11,24 @@ import {
 
 interface Props {
   historyRecords: HistoryRecords[]
-  historyDataDelete:(updatedRecords: HistoryRecords[]) => void
+  historyDataDelete: (updatedRecords: HistoryRecords[]) => void
 }
 
-const ConversionHistoryTable:FC<Props> = ({historyRecords, historyDataDelete}) => {
+const ConversionHistoryTable: FC<Props> = ({ historyRecords, historyDataDelete }) => {
   const handleDelete = (item: React.Key) => {
     const updatedRecords = historyRecords.filter((v, i) => i !== item)
     historyDataDelete(updatedRecords);
   }
 
   const showRecords = () => {
-    return historyRecords.map((item : HistoryRecords, index: Key) => {
+    return historyRecords.map((item: HistoryRecords, index: Key) => {
       return (
         <tr className="row" key={index}>
-          <td className="first-tbody-cell tbody-cell" ><Close className='button' onClick={() => handleDelete(index)} /></td>
+          <td className="first-tbody-cell tbody-cell"><Close className='button' onClick={() => handleDelete(index)}/>
+          </td>
           <td className="second-tbody-cell tbody-cell">{item.date}</td>
           <td className="third-tbody-cell tbody-cell">{item.amount} {item.exchangeFrom}</td>
-          <td className="fourth-tbody-cell tbody-cell"><RightArrow /></td>
+          <td className="fourth-tbody-cell tbody-cell"><RightArrow/></td>
           <td className="fifth-tbody-cell tbody-cell">{item.conversionResult} {item.exchangeTo}</td>
         </tr>
       )

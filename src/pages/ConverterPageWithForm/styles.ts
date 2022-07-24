@@ -10,17 +10,17 @@ export const Title = styled.div`
     margin-top: 40px;
     margin-bottom: 12px;
   }
-  
+
   @media (max-width: 920px) {
     font-size: 28px;
   }
-  
+
   @media (max-width: 768px) {
     font-size: 20px;
     margin-top: 20px;
     margin-bottom: 8px;
   }
-  
+
 `;
 
 export const ContainerWrapper = styled.div`
@@ -47,7 +47,7 @@ export const ContainerWrapper = styled.div`
     padding: 0 30px;
   }
 
-  @media (max-width: 768px) {  
+  @media (max-width: 768px) {
     height: 360px;
     padding: 0 10px;
   }
