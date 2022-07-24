@@ -19,7 +19,6 @@ export const TableWrapper = styled.div`
   }
 
   @media (max-width: 920px) {
-    width: 95%;
     padding-left: 18px;
   }
 
@@ -40,6 +39,8 @@ export const TableWrapper = styled.div`
     }
     @media (max-width: 768px) {
       font-size: 10px;
+    }
+    @media (max-width: 400px) {
       width: calc(104% - 18px);
     }
   }
@@ -70,7 +71,6 @@ export const TableWrapper = styled.div`
 
   tbody tr {
     display: table;
-    width: 100%;
     table-layout: fixed;
   }
 
@@ -218,7 +218,7 @@ export const TableWrapper = styled.div`
     }
 
     @media (max-width: 768px) {
-      width: 24px;
+      width: 30px;
       margin-left: 10px;
       display: flex;
       justify-content: left;
@@ -242,8 +242,8 @@ export const TableWrapper = styled.div`
 
     @media (max-width: 768px) {
       padding-left: 5px;
-      width: 62px;
-      text-align: left;
+      width: 80px;
+      text-align: center;
     }
   }
 
