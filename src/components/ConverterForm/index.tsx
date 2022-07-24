@@ -34,6 +34,7 @@ interface Props {
   currencyList: string[]
 }
 
+
 const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
   const today = new Date().toISOString().split("T")[0];
   const [date] = useState<string>(today);
@@ -47,12 +48,14 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm<ExchangeFormData>({
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm<ExchangeFormData>({
     mode: 'onChange'
   });
+
   const { isLoading, dataFromRequest, setDataFromRequest, isError, error } = useExchangeCurrency(submittedFormData)
 
   useEffect(() => {
+
     if (isError) {
       setIsErrorModalOpen(true)
     }
@@ -105,10 +108,11 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
                     ...exchangeFromValidation
                   })}
                           onChange={(e) => setShortCurrencyNamesAmountField(e.target.value)}>
+                    <option value=""></option>
                     {handleOptions()}
                   </Select>
                 </div>
-                {!shortCurrencyNamesAmountField &&
+                {errors.exchangeFrom &&
                   <ErrorField errors={errors}>{errors.exchangeFrom?.message}</ErrorField>}
               </SelectFormField>
 
@@ -121,14 +125,16 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
                   <Label>
                     Przelicz na
                   </Label>
-                  <Select {...register('exchangeTo', {
+                  <Select
+                    {...register('exchangeTo', {
                     ...exchangeToValidation
                   })}
-                          onChange={(e) => setShortCurrencyNamesResultField(e.target.value)}>
+                    onChange={(e) => setShortCurrencyNamesResultField(e.target.value)}>
+                    <option value=""></option>
                     {handleOptions()}
                   </Select>
                 </div>
-                {!shortCurrencyNamesResultField &&
+                {errors.exchangeTo &&
                   <ErrorField errors={errors}>{errors.exchangeTo?.message}</ErrorField>}
               </SelectFormField>
             </SelectsWrapper>
@@ -176,7 +182,7 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
           <ButtonsWrapper>
             {
               location.pathname === "/" ?
-                <HistoryButton onClick={() => navigate('/ConverterWithHistory')}>
+                <HistoryButton onClick={() => navigate('/Converter-With-History')}>
                   Pokaż Historię
                 </HistoryButton>
                 :
@@ -185,7 +191,10 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
                 </HistoryButton>
             }
             <ConvertSubmitButton type="submit"
-                                 disabled={!isDirty || !isValid || isLoading}
+                                 disabled= {
+                                    isLoading || !shortCurrencyNamesAmountField || !shortCurrencyNamesResultField ||
+                                   (shortCurrencyNamesAmountField === shortCurrencyNamesResultField) || !isValid
+            }
             >
               Konwertuj
             </ConvertSubmitButton>
