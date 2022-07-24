@@ -310,7 +310,7 @@ export const ConvertSubmitButton = styled.button`
 
   @media (max-width: 1300px) {
     width: 140px;
-    height: 54px;
+    height: 50px;
   }
 
   @media (max-width: 920px) {
@@ -342,7 +342,7 @@ export const HistoryButton = styled.div`
   
   @media (max-width: 1300px) {
     width: 170px;
-    height: 54px;
+    height: 50px;
   }
 
   @media (max-width: 920px) {

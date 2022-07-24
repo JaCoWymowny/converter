@@ -6,9 +6,12 @@ export const Title = styled.div`
   font-size: 35px;
   margin-top: 75px;
 
-  @media (max-width: 920px) {
+  @media (max-width: 1300px) {
     margin-top: 40px;
     margin-bottom: 12px;
+  }
+  
+  @media (max-width: 920px) {
     font-size: 28px;
   }
 `;
@@ -29,8 +32,11 @@ export const ContainerWrapper = styled.div`
   -webkit-backdrop-filter: blur(36px);
   font-weight: 700;
 
-  @media (max-width: 920px) {
+  @media (max-width: 1300px) {
     height: 400px;
+  }
+
+  @media (max-width: 920px) {
     padding: 0 30px;
   }
 `;

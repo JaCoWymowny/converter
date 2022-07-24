@@ -41,6 +41,7 @@ export const FirstRouteWrapper = styled.div`
   
   @media (max-width: 1300px) {
     width: 900px;
+    height: 400px;
   }
   
   @media (max-width: 920px) {
@@ -61,6 +62,7 @@ export const HistoryRouterWrapper = styled.div`
   
   @media (max-width: 1300px) {
     width: 900px;
+    height: 700px;
   }
   
   @media (max-width: 920px) {

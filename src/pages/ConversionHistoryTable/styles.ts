@@ -42,6 +42,19 @@ export const TableWrapper = styled.div`
       font-size: 12px;
     }
   }
+
+  thead tr {
+    position: relative;
+  }
+  
+  thead tr:before {
+    content : "";
+    position: absolute;
+    left    : 0;
+    bottom  : 0;
+    width   : 98%;
+    border-bottom: 1px solid ${(props) => props.theme.colors.primary};
+  }
   
   tbody {
     display: block;
@@ -71,6 +84,10 @@ export const TableWrapper = styled.div`
   }
   
   //thead cell
+  
+  .thead-cell {
+    padding-bottom: 10px;
+  }
     
   .first-thead-cell {
     padding-left: 15px;
