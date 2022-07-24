@@ -105,7 +105,6 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
                     ...exchangeFromValidation
                   })}
                           onChange={(e) => setShortCurrencyNamesAmountField(e.target.value)}>
-                    <option value=""></option>
                     {handleOptions()}
                   </Select>
                 </div>
@@ -126,7 +125,6 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
                     ...exchangeToValidation
                   })}
                           onChange={(e) => setShortCurrencyNamesResultField(e.target.value)}>
-                    <option value=''></option>
                     {handleOptions()}
                   </Select>
                 </div>
