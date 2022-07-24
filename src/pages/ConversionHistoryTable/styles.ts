@@ -74,7 +74,7 @@ export const TableWrapper = styled.div`
     
   .first-thead-cell {
     padding-left: 15px;
-    width: 225px;
+    width: 230px;
     text-align: left;
 
     @media (max-width: 1300px) {
@@ -88,7 +88,7 @@ export const TableWrapper = styled.div`
 
   .second-thead-cell {
     text-align: left;
-    width: 225px;
+    width: 219px;
     
     @media (max-width: 1300px) {
       width: 130px;
@@ -104,7 +104,7 @@ export const TableWrapper = styled.div`
   }
 
   .third-thead-cell {
-    width: 290px;
+    width: 265px;
     text-align: right;
 
     @media (max-width: 1300px) {
@@ -121,7 +121,7 @@ export const TableWrapper = styled.div`
   }
   
   .fourth-thead-cell {
-    width: 218px;
+    width: 205px;
 
     @media (max-width: 1300px) {
       width: 177px;
@@ -137,7 +137,7 @@ export const TableWrapper = styled.div`
   }
   
   .fifth-thead-cell {
-    width: 140px;
+    width: 135px;
     text-align: right;
     padding-right: 22px;
     
@@ -168,7 +168,7 @@ export const TableWrapper = styled.div`
   }
   
   .first-tbody-cell {
-    width: 200px;
+    width: 180px;
     text-align: left;
     padding-left: 40px;
 
