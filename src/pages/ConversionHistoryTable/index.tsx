@@ -40,8 +40,8 @@ const ConversionHistoryTable:FC<Props> = ({historyRecords, historyDataDelete}) =
         <table>
           <thead>
           <tr>
-            <th className="first-thead-cell thead-cell">Delete record</th>
-            <th className="second-thead-cell thead-cell">Date</th>
+            <th className="first-thead-cell thead-cell">Usuń rekord</th>
+            <th className="second-thead-cell thead-cell">Data</th>
             <th className="third-thead-cell thead-cell">Przed Konwersją</th>
             <th className="fourth-thead-cell thead-cell"></th>
             <th className="fifth-thead-cell thead-cell">Po konwersji</th>

@@ -24,6 +24,14 @@ export const FormWrapper = styled.div`
   @media (max-width: 920px) {
     margin-top: 40px;
   }
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    height: 290px;
+  }
+  
 `;
 
 export const Form = styled.form`
@@ -38,6 +46,12 @@ export const FormFieldWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    height: 220px;
+  }
 `;
 
 export const SelectsWrapper = styled.div`
@@ -47,7 +61,6 @@ export const SelectsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   @media (max-width: 1300px) {
     width: 300px;
   }
@@ -55,7 +68,11 @@ export const SelectsWrapper = styled.div`
   @media (max-width: 920px) {
     width: 280px;
   }
-  
+
+  @media (max-width: 768px) {
+    width: 97%;
+    margin-bottom: 15px;
+  }
 `;
 
 export const AmountAndResultWrapper = styled.div`
@@ -67,6 +84,10 @@ export const AmountAndResultWrapper = styled.div`
   
   .result-container {
     height: 86px;
+
+    @media (max-width: 768px) {
+      height: 80px;
+    }
   }
 
   @media (max-width: 1300px) {
@@ -75,6 +96,10 @@ export const AmountAndResultWrapper = styled.div`
 
   @media (max-width: 920px) {
     width: 320px;
+  }
+  @media (max-width: 768px) {
+    width: 97%;
+    margin-bottom: 10px;
   }
 `;
 
@@ -89,6 +114,15 @@ export const SelectFormField = styled.div`
     flex-direction: column;
     height: 86px;
     justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      height: 80px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    height: 100px;
   }
 `;
 
@@ -103,10 +137,18 @@ export const FormField = styled.div`
     flex-direction: column;
     height: 86px;
     justify-content: space-between;
+
+    @media (max-width: 768px) {
+      height: 80px;
+    }
   }
   
   .specific-width {
     width: 160px;
+  }
+  
+  @media (max-width: 768px) {
+    height: 100px;
   }
 `;
 
@@ -152,12 +194,22 @@ export const Select = styled.select`
   @media (max-width: 1300px) {
     width: 115px;
   }
+
+  @media (max-width: 768px) {
+    width: 150px;
+  }
 `;
 
 export const Label = styled.label`
  font-weight: 600;
   font-size: 16px;
   width: 115px;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    text-align: center;
+    width: 150px;
+  }
 `;
 
 export const InputAndResultField = styled.div<StyleProps>`
@@ -277,11 +329,22 @@ export const ErrorField = styled.span<StyleProps>`
   @media (max-width: 1300px) {
     width: 115px;
   }
+  
+  @media (max-width: 768px) {
+    width: 150px;
+    text-align: center;
+  }
 `;
 
 export const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: right;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 10px;
+  }
 `;
 
 export const ConvertSubmitButton = styled.button`
@@ -317,6 +380,12 @@ export const ConvertSubmitButton = styled.button`
     width: 120px;
     font-size: 14px;
   }
+
+  @media (max-width: 768px) {
+    width: 130px;
+    margin-left: 0;
+    height: 50px;
+  }
 `;
 
 export const HistoryButton = styled.div`
@@ -348,6 +417,11 @@ export const HistoryButton = styled.div`
   @media (max-width: 920px) {
     width: 145px;
     font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    width: 130px;
+    height: 50px;
   }
 `;
 

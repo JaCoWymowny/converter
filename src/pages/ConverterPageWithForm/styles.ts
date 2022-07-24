@@ -14,6 +14,13 @@ export const Title = styled.div`
   @media (max-width: 920px) {
     font-size: 28px;
   }
+  
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  
 `;
 
 export const ContainerWrapper = styled.div`
@@ -38,5 +45,10 @@ export const ContainerWrapper = styled.div`
 
   @media (max-width: 920px) {
     padding: 0 30px;
+  }
+
+  @media (max-width: 768px) {  
+    height: 360px;
+    padding: 0 10px;
   }
 `;

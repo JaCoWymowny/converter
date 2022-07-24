@@ -7,10 +7,6 @@ export const Container = styled.div`
   margin: auto;
   display: flex;
   justify-content: center;
-
-  //@media (max-width: 920px) {
-  //  padding-left: 10px;
-  //}
 `;
 
 export const TableWrapper = styled.div`
@@ -28,7 +24,8 @@ export const TableWrapper = styled.div`
   }
   
   @media (max-width: 768px) {
-    width: 250px;
+    width: 110%;
+    padding-left: 10px;
   }
   
   table {
@@ -40,6 +37,10 @@ export const TableWrapper = styled.div`
     
     @media (max-width: 1300px) {
       font-size: 12px;
+    }
+    @media (max-width: 768px) {
+      font-size: 10px;
+      width: calc(104% - 18px);
     }
   }
 
@@ -61,6 +62,10 @@ export const TableWrapper = styled.div`
     overflow-y: scroll;
     overflow-x: unset;
     height: 215px;
+
+    @media (max-width: 768px) {
+      height: 170px;
+    }
   }
 
   tbody tr {
@@ -101,6 +106,16 @@ export const TableWrapper = styled.div`
     @media (max-width: 920px) {
       width: 150px;
     }
+
+    @media (max-width: 768px) {
+      padding-left: 5px;
+      width: 60px;
+      text-align: left;
+
+      &::first-letter {
+        padding-left: 5px;
+      }
+    }
   }
 
   .second-thead-cell {
@@ -116,7 +131,9 @@ export const TableWrapper = styled.div`
     }
 
     @media (max-width: 768px) {
-      text-align: right;
+      text-align: left;
+      width: 50px;
+      padding-left: 10px;
     }
   }
 
@@ -144,12 +161,8 @@ export const TableWrapper = styled.div`
       width: 177px;
     }
     
-    @media (max-width: 920px) {
-      
-    }
-    
     @media (max-width: 768px) {
-      width: 13%;
+      width: 15px;
     }
   }
   
@@ -176,6 +189,11 @@ export const TableWrapper = styled.div`
   // tbodycell
   .tbody-cell {
     padding: 10px 0;
+
+    @media (max-width: 768px) {
+      padding: 3px 0;
+      height: 40px;
+    }
   }
   
   .button {
@@ -199,9 +217,10 @@ export const TableWrapper = styled.div`
     }
     
     @media (max-width: 768px) {
-      padding-left: 0;
-      width: 18%;
-      margin-right: 40px;
+      width: 24px;
+      margin-left: 10px;
+      display: flex;
+      justify-content: left;
     }
   }
 
@@ -221,9 +240,9 @@ export const TableWrapper = styled.div`
     }
 
     @media (max-width: 768px) {
-      padding-left: 0;
-      padding-right:3px;
-      width: 20%;
+      padding-left: 5px;
+      width: 62px;
+      text-align: left;
     }
   }
   
@@ -240,7 +259,11 @@ export const TableWrapper = styled.div`
     }
     
     @media (max-width: 768px) {
-      width: 18%;
+      width: 100px;
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
   
@@ -257,8 +280,7 @@ export const TableWrapper = styled.div`
     }
     
     @media (max-width: 768px) {
-      padding-left: 10px;
-      width: 15%;
+      width: 10px;
     }
   }
   
@@ -277,6 +299,15 @@ export const TableWrapper = styled.div`
       width: 200px;
       padding-right: 12px;
     }
+
+    @media (max-width: 768px) {
+      width: 130px;
+      padding-right: 8px;
+      max-width: 130px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 `
 
@@ -289,6 +320,10 @@ export const Close = styled.div`
   top: 50%;
   bottom: 50%;
   margin: auto 0;
+
+  @media (max-width: 768px) {
+    background-size: 90%;
+  }
 `;
 
 export const RightArrow = styled.div`
@@ -308,5 +343,10 @@ export const RightArrow = styled.div`
 
   @media (max-width: 920px) {
     right: 32%;
+  }
+
+  @media (max-width: 768px) {
+    right: 40%;
+    display: none;
   }
 `;

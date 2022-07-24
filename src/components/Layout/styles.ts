@@ -48,6 +48,11 @@ export const FirstRouteWrapper = styled.div`
     width: 700px;
     height: 400px;
   }
+  
+  @media (max-width: 768px) {
+    width: 97%;
+    margin-top: 20px;
+  }
 `;
 
 export const HistoryRouterWrapper = styled.div`
@@ -68,5 +73,11 @@ export const HistoryRouterWrapper = styled.div`
   @media (max-width: 920px) {
     width: 700px;
     height: 660px;
+  }
+
+  @media (max-width: 768px) {
+    width: 97%;
+    margin-top: 20px;
+    height: 600px;
   }
 `;
