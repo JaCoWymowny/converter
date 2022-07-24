@@ -12,7 +12,7 @@ Got to site: https://currency-converter-site.netlify.app <br />
 U can also check this project on your own computer. <br />
 1. Download the repository from github Page
 2. After unzip open project with IDE
-3. Don't forget about API key for test this APP - register here: https://app.exchangerate-api.com/ and create .env file in main folder
+3. Don't forget about API key for test this APP - register here: https://app.exchangerate-api.com/ and create .env file in the main folder
 4. Copy This code `REACT_APP_API_KEY = KEY` to .env file, then paste your own key 
 5. Use `npm install`
 6. Then `npm start`.
