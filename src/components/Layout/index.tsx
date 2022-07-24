@@ -40,7 +40,7 @@ const Layout = () => {
           </FirstRouteWrapper>
         }
         />
-        <Route path="/ConverterWithHistory" element={
+        <Route path="/Converter-With-History" element={
           <HistoryRouterWrapper>
             <Converter historyRecordDataHandler={historyRecordDataHandler}/>
             <ConversionHistoryTable historyRecords={historyRecords} historyDataDelete={historyDataDelete}/>
