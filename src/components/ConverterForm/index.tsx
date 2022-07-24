@@ -187,8 +187,7 @@ const ConverterForm: FC<Props> = ({ addFormDataToHistory, currencyList }) => {
                 </HistoryButton>
             }
             <ConvertSubmitButton type="submit"
-                                 // disabled={!isDirty || !isValid || isLoading}
-                                 disabled={isLoading}
+                                 disabled={!isDirty || !isValid || isLoading}
             >
               Konwertuj
             </ConvertSubmitButton>
