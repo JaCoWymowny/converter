@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Currency converter
 
 ![](demo1.PNG)
 ![](demo2.PNG)
