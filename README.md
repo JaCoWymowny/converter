@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![](demo1.PNG)
+![](demo2.PNG)
+![](demo3.PNG)
+![](demo4.PNG)
+
 ## Description
 
 To make this project, I used ReactJS, Typescript, React Query, React Hook Forms. To convert currency, project connects to the external api and save history to Localstorage
